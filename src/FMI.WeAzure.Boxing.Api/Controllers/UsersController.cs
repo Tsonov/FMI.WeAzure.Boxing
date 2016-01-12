@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FMI.WeAzure.Boxing.Contracts.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,26 +11,39 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
     public class UsersController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            return AwesomeDataRepository.Users;
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            var user = AwesomeDataRepository.Users.FirstOrDefault(x => x.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(user);
+            }
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post([FromBody]User user)
         {
+            if (user == null)
+            {
+                throw new Exception("Invalid null user");
+            }
+            AwesomeDataRepository.Users.Add(user);
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT api/<controller>/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
         // DELETE api/<controller>/5
         public void Delete(int id)
