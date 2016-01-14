@@ -19,6 +19,10 @@ namespace FMI.WeAzure.Boxing.Api
                 new User() { Id = 3, UserName = "Test3", Password = "Omg3" },
             };
 
+        private static List<Login> logins = new List<Login>();
+
+        private static List<Match> matches = new List<Match>();
+
         public static IList<User> Users
         {
             get
@@ -26,5 +30,15 @@ namespace FMI.WeAzure.Boxing.Api
                 return users;
             }
         }
+
+        public static IList<Login> Logins
+        {
+            get
+            {
+                return logins;
+            }
+        }
+
+        public static IList<Match> Matches { get { return matches; } }
     }
 }

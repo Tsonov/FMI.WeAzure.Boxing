@@ -11,9 +11,25 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
     public class UsersController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<User> Get()
+        public IEnumerable<User> Get(
+            [FromUri] int skip = 0, 
+            [FromUri] int take = 10, 
+            [FromUri] UserOrderColumn orderCol = UserOrderColumn.FullName, 
+            [FromUri] Order order = Order.Ascending)
         {
-            return AwesomeDataRepository.Users;
+            var result =  AwesomeDataRepository.Users.Skip(skip).Take(take);
+            Func<User, object> orderer;
+            if (orderCol == UserOrderColumn.FullName)
+            {
+                orderer = (x => x.UserName);
+            }
+            else
+            {
+                orderer = (x => x.Id); // TODO: Fix DTOs
+            }
+            result = order == Order.Ascending ? result.OrderBy(orderer) : result.OrderByDescending(orderer);
+
+            return result;
         }
 
         // GET api/<controller>/5
@@ -48,6 +64,12 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            // TODO: Needs admin validation
+            var item = AwesomeDataRepository.Users.SingleOrDefault(u => u.Id == id);
+            if (item != null)
+            {
+                AwesomeDataRepository.Users.Remove(item);
+            }
         }
     }
 }

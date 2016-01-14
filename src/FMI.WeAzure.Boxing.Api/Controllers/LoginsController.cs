@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FMI.WeAzure.Boxing.Contracts.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +10,22 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 {
     public class LoginsController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public Login Post(string value)
         {
+            var login = new Login() { Id = AwesomeDataRepository.Logins.Max(l => l.Id) + 1, AuthToken = "Test"};
+            AwesomeDataRepository.Logins.Add(login);
+            return login;
         }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
+        
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            var login = AwesomeDataRepository.Logins.SingleOrDefault(l => l.Id == id);
+            if (login != null)
+            {
+                AwesomeDataRepository.Logins.Remove(login);
+            }
         }
     }
 }
