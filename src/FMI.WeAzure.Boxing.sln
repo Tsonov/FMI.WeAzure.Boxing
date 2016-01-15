@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Api", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Contracts", "FMI.WeAzure.Boxing.Contracts\FMI.WeAzure.Boxing.Contracts.csproj", "{8619650C-B203-4739-B49F-F888D7BBF004}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Business", "FMI.WeAzure.Boxing.Business\FMI.WeAzure.Boxing.Business.csproj", "{D6D051E3-1C6D-4FED-BD40-323232C8128D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8619650C-B203-4739-B49F-F888D7BBF004}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8619650C-B203-4739-B49F-F888D7BBF004}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8619650C-B203-4739-B49F-F888D7BBF004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D051E3-1C6D-4FED-BD40-323232C8128D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D051E3-1C6D-4FED-BD40-323232C8128D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D051E3-1C6D-4FED-BD40-323232C8128D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D051E3-1C6D-4FED-BD40-323232C8128D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
