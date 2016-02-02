@@ -11,8 +11,14 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
     public class MatchesController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<Match> Get([FromUri] int skip = 0, [FromUri] int take = 10)
+        public IEnumerable<Match> Get([FromBody] string searchString = "", 
+            [FromUri] int skip = 0, 
+            [FromUri] int take = 10)
         {
+            // TODO: Split pagination
+            // TODO: Admin-only for matches that are not deleted
+            // TODO: Users can filter
+            var searchResults = AwesomeDataRepository.Matches.Where(x => x.Address.Contains(searchString) || x.FirstBoxer.Contains(searchString) || x.SecondBoxer.Contains(searchString));
             return AwesomeDataRepository.Matches.Skip(skip).Take(take);
         }
 
@@ -47,6 +53,16 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            // TODO: Check for admin
+            var match = AwesomeDataRepository.Matches.SingleOrDefault(x => x.Id == id);
+            if (match == null)
+            {
+                // TODO: Better code
+                throw new Exception("Invalid match");
+            }
+
+            // TODO: Predictions
+            AwesomeDataRepository.Matches.Remove(match);
         }
 
         [HttpPost]
@@ -61,6 +77,14 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             }
             // TODO: Use user as well
             match.Predictions.Add(prediction);
+        }
+
+        [HttpPut]
+        [Route("api/matches/{id}/predictions")]
+        public void PutPrediction([FromUri] int id, [FromBody] Prediction prediction)
+        {
+            // TODO: Make a "is deactivated field"
+            // TODO: Implement
         }
     }
 }

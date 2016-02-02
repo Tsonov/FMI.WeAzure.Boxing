@@ -15,26 +15,25 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         // GET api/<controller>
         public IEnumerable<User> Get(GetUsersRequest request)
         {
-            return null;
-            //var result =  AwesomeDataRepository.Users.Skip(skip).Take(take);
-            //Func<User, object> orderer;
-            //if (orderCol == UserOrderColumn.FullName)
-            //{
-            //    orderer = (x => x.UserName);
-            //}
-            //else
-            //{
-            //    orderer = (x => x.Id); // TODO: Fix DTOs
-            //}
-            //result = order == Order.Ascending ? result.OrderBy(orderer) : result.OrderByDescending(orderer);
+            var result = AwesomeDataRepository.Users.Skip(request.Skip).Take(request.Take);
+            Func<User, object> orderer;
+            if (request.SortColumn == "fullName")
+            {
+                orderer = (x => x.UserName);
+            }
+            else
+            {
+                orderer = (x => x.Id); // TODO: Fix DTOs
+            }
+            result = request.SortOrder == SortOrder.Ascending ? result.OrderBy(orderer) : result.OrderByDescending(orderer);
 
-            //return result;
+            return result;
         }
 
         // GET api/<controller>/5
         public IHttpActionResult Get(int id)
         {
-            var user = AwesomeDataRepository.Users.FirstOrDefault(x => x.Id == id);
+            var user = AwesomeDataRepository.Users.SingleOrDefault(x => x.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -53,13 +52,10 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
                 throw new Exception("Invalid null user");
             }
             AwesomeDataRepository.Users.Add(user);
+
+            
         }
-
-        // PUT api/<controller>/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
+       
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
