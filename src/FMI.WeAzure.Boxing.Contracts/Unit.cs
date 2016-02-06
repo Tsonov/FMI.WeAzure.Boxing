@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace FMI.WeAzure.Boxing.Contracts
 {
     /// <summary>
-    /// Represents a Void type ala F#, since Void is not a valid type in C#
+    /// Represents a Void type ala F#, since Void is not a true type in C#
     /// </summary>
     public sealed class Unit
     {
         static Unit()
         {
-            // Tell the compiler not to mark the class as beforefieldinit
+            // Tell the compiler not to mark the class as beforefieldinit, see Jon Skeet's blog
         }
 
         private Unit()

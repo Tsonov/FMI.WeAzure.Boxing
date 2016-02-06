@@ -8,14 +8,8 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Contracts.Requests.Users
 {
-    public class GetUsersRequest : IRequest<IEnumerable<User>>, IPaged
+    public class CreateUserRequest : IRequest
     {
-        public int Skip { get; set; }
-
-        public int Take { get; set; }
-
-        public SortOrder SortOrder { get; set; }
-
-        public string SortColumn { get; set; }
+        public User UserInfo { get; set; }
     }
 }

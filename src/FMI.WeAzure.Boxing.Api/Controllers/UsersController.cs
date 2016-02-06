@@ -13,7 +13,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
     public class UsersController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<User> Get(GetUsersRequest request)
+        public IEnumerable<User> Get(GetAllUsersRequest request)
         {
             var result = AwesomeDataRepository.Users.Skip(request.Skip).Take(request.Take);
             Func<User, object> orderer;

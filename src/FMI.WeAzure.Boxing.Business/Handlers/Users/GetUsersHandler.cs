@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Users
 {
-    public class GetUsersHandler : IRequestHandler<GetUsersRequest, IEnumerable<User>>
+    public class GetUsersHandler : IRequestHandler<GetAllUsersRequest, IEnumerable<User>>
     {
 
         public void Dispose()
@@ -17,7 +17,7 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<User>> HandleAsync(GetUsersRequest request)
+        public Task<IEnumerable<User>> HandleAsync(GetAllUsersRequest request)
         {
             return Task.FromResult(new List<User>().AsEnumerable());
         }
