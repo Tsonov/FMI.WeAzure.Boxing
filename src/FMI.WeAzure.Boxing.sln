@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Api.Tests", "..\tests\FMI.WeAzure.Boxing.Api.Tests\FMI.WeAzure.Boxing.Api.Tests.csproj", "{F944A59C-03E3-44CB-BE2E-BC431F7F7CF4}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Contracts", "FMI.WeAzure.Boxing.Contracts\FMI.WeAzure.Boxing.Contracts.csproj", "{8619650C-B203-4739-B49F-F888D7BBF004}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Business", "FMI.WeAzure.Boxing.Business\FMI.WeAzure.Boxing.Business.csproj", "{D6D051E3-1C6D-4FED-BD40-323232C8128D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Database", "FMI.WeAzure.Boxing.Database\FMI.WeAzure.Boxing.Database.csproj", "{F725C4C3-B6F1-48BF-9E25-4465DA051CD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D6D051E3-1C6D-4FED-BD40-323232C8128D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D051E3-1C6D-4FED-BD40-323232C8128D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6D051E3-1C6D-4FED-BD40-323232C8128D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F725C4C3-B6F1-48BF-9E25-4465DA051CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F725C4C3-B6F1-48BF-9E25-4465DA051CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F725C4C3-B6F1-48BF-9E25-4465DA051CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F725C4C3-B6F1-48BF-9E25-4465DA051CD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
