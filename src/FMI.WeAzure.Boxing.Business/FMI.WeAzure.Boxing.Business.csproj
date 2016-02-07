@@ -52,6 +52,7 @@
     <Compile Include="Handlers\Authentication\LogoutHandler.cs" />
     <Compile Include="Handlers\Authentication\LoginHandler.cs" />
     <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\Matches\CancelMatchHandler.cs" />
     <Compile Include="Handlers\Matches\CreateMatchHandler.cs" />
     <Compile Include="Handlers\Matches\GetAllMatchesHandler.cs" />
     <Compile Include="Handlers\Matches\SearchForMatchHandler.cs" />

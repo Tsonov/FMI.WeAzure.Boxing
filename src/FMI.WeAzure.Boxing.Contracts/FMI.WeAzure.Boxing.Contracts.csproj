@@ -49,6 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Authentication\LoginRequest.cs" />
     <Compile Include="Requests\Authentication\LogoutRequest.cs" />
+    <Compile Include="Requests\Matches\CancelMatchRequest.cs" />
     <Compile Include="Requests\Matches\CreateMatchRequest.cs" />
     <Compile Include="Requests\Matches\GetAllMatchesRequest.cs" />
     <Compile Include="Requests\Matches\SearchForMatchRequest.cs" />

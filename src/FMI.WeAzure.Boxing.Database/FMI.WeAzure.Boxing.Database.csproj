@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201602072020297_ReplaceLoginKey.Designer.cs">
       <DependentUpon>201602072020297_ReplaceLoginKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602072030267_AddMatchActiveFlag.cs" />
+    <Compile Include="Migrations\201602072030267_AddMatchActiveFlag.Designer.cs">
+      <DependentUpon>201602072030267_AddMatchActiveFlag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602072020297_ReplaceLoginKey.resx">
       <DependentUpon>201602072020297_ReplaceLoginKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602072030267_AddMatchActiveFlag.resx">
+      <DependentUpon>201602072030267_AddMatchActiveFlag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

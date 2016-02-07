@@ -23,6 +23,8 @@ namespace FMI.WeAzure.Boxing.Database
 
         public string Description { get; set; }
 
+        public bool Active { get; set; }
+
         public virtual Boxer FirstBoxer { get; set; }
 
         public virtual Boxer SecondBoxer { get; set; }
