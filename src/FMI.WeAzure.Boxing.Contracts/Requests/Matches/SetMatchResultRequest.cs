@@ -9,5 +9,8 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Matches
 {
     public class SetMatchResultRequest : IRequest
     {
+        public int MatchId { get; set; }
+
+        public int Winner { get; set; }
     }
 }

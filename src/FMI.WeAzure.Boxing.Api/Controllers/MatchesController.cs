@@ -15,11 +15,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             [FromUri] int skip = 0, 
             [FromUri] int take = 10)
         {
-            // TODO: Split pagination
-            // TODO: Admin-only for matches that are not deleted
-            // TODO: Users can filter
-            var searchResults = AwesomeDataRepository.Matches.Where(x => x.Address.Contains(searchString) || x.FirstBoxer.Contains(searchString) || x.SecondBoxer.Contains(searchString));
-            return AwesomeDataRepository.Matches.Skip(skip).Take(take);
+            return null;
         }
 
         // GET api/<controller>/5

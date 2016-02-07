@@ -24,7 +24,7 @@ namespace FMI.WeAzure.Boxing.Contracts
         /// <summary>
         /// Default and only value of Unit type
         /// </summary>
-        private static readonly Unit instance = new Unit();
+        public static readonly Unit Instance = new Unit();
 
     }
 }

@@ -27,6 +27,8 @@ namespace FMI.WeAzure.Boxing.Database
 
         public virtual Boxer SecondBoxer { get; set; }
 
+        public virtual Boxer Winner { get; set; }
+
         public virtual ICollection<Prediction> Predictions { get; set; }
     }
 }

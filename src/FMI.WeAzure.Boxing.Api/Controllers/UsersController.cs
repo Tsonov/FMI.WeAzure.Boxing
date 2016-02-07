@@ -1,4 +1,5 @@
-﻿using FMI.WeAzure.Boxing.Contracts.Dto;
+﻿using FMI.WeAzure.Boxing.Business.Handlers.Users;
+using FMI.WeAzure.Boxing.Contracts.Dto;
 using FMI.WeAzure.Boxing.Contracts.Requests.Users;
 using System;
 using System.Collections.Generic;
@@ -13,21 +14,9 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
     public class UsersController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<User> Get(GetAllUsersRequest request)
+        public async Task<IEnumerable<User>> Get(GetAllUsersRequest request)
         {
-            var result = AwesomeDataRepository.Users.Skip(request.Skip).Take(request.Take);
-            Func<User, object> orderer;
-            if (request.SortColumn == "fullName")
-            {
-                orderer = (x => x.UserName);
-            }
-            else
-            {
-                orderer = (x => x.Id); // TODO: Fix DTOs
-            }
-            result = request.SortOrder == SortOrder.Ascending ? result.OrderBy(orderer) : result.OrderByDescending(orderer);
-
-            return result;
+            return await (new GetAllUsersHandler()).HandleAsync(request);
         }
 
         // GET api/<controller>/5

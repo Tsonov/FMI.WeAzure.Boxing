@@ -15,9 +15,9 @@ namespace FMI.WeAzure.Boxing.Contracts.Dto
 
         public int Id { get; set; }
 
-        public string FirstBoxer { get; set; }
+        public int FirstBoxer { get; set; }
 
-        public string SecondBoxer { get; set; }
+        public int SecondBoxer { get; set; }
 
         public string Address { get; set; }
 

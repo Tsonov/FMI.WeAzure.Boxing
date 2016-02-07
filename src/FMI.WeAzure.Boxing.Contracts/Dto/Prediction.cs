@@ -8,6 +8,8 @@ namespace FMI.WeAzure.Boxing.Contracts.Dto
 {
     public sealed class Prediction
     {
+        public int Id { get; set; }
+
         public int UserId { get; set; }
 
         public PredictionKind UserPrediction { get; set; }

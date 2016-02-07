@@ -74,7 +74,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserOrderColumn.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -89,6 +88,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FMI.WeAzure.Boxing.Business\FMI.WeAzure.Boxing.Business.csproj">
+      <Project>{d6d051e3-1c6d-4fed-bd40-323232c8128d}</Project>
+      <Name>FMI.WeAzure.Boxing.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMI.WeAzure.Boxing.Contracts\FMI.WeAzure.Boxing.Contracts.csproj">
       <Project>{8619650c-b203-4739-b49f-f888d7bbf004}</Project>
       <Name>FMI.WeAzure.Boxing.Contracts</Name>

@@ -9,5 +9,6 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Users
 {
     public class DeleteUserRequest : IRequest
     {
+        public string UserName { get; set; }
     }
 }

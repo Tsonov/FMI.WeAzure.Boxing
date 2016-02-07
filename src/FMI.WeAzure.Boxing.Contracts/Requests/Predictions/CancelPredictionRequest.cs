@@ -9,5 +9,6 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Predictions
 {
     public class CancelPredictionRequest : IRequest
     {
+        public int PredictionId { get; set; }
     }
 }

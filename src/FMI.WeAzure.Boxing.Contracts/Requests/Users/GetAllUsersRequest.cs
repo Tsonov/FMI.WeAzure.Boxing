@@ -16,6 +16,6 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Users
 
         public SortOrder SortOrder { get; set; }
 
-        public string SortColumn { get; set; }
+        public UserOrderColumn OrderByColumn { get; set; }
     }
 }

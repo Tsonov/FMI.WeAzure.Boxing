@@ -9,5 +9,10 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Predictions
 {
     public class AddNewPredictionRequest : IRequest
     {
+        public int MatchId { get; set; }
+
+        public int PredictedWinner { get; set; }
+
+        public int MadeByUser { get; set; }
     }
 }

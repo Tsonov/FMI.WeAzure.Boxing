@@ -10,5 +10,6 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Users
 {
     public class GetUserRequest : IRequest<User>
     {
+        public string UserName { get; set; }
     }
 }
