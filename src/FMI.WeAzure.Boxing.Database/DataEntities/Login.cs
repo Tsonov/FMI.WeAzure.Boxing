@@ -14,7 +14,7 @@ namespace FMI.WeAzure.Boxing.Database
 
         public virtual User ForUser { get; set; }
 
-        public string SourceIP { get; set; }
+        public DateTime IssuedAt { get; set; }
 
         public DateTime ExpiresAt { get; set; }
 
