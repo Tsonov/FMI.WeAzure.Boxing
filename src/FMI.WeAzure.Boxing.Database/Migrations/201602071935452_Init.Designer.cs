@@ -13,7 +13,7 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602071921110_Init"; }
+            get { return "201602071935452_Init"; }
         }
         
         string IMigrationMetadata.Source

@@ -53,14 +53,17 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         MadeBy_Id = c.Int(),
                         MadeFor_Id = c.Int(),
+                        PredictedWinner_Id = c.Int(),
                         PredictionResult_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Users", t => t.MadeBy_Id)
                 .ForeignKey("dbo.BoxingMatches", t => t.MadeFor_Id)
+                .ForeignKey("dbo.Boxers", t => t.PredictedWinner_Id)
                 .ForeignKey("dbo.PredictionResults", t => t.PredictionResult_Id)
                 .Index(t => t.MadeBy_Id)
                 .Index(t => t.MadeFor_Id)
+                .Index(t => t.PredictedWinner_Id)
                 .Index(t => t.PredictionResult_Id);
             
             CreateTable(
@@ -77,7 +80,7 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
                 "dbo.PredictionResults",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -105,11 +108,13 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
             DropForeignKey("dbo.BoxingMatches", "Winner_Id", "dbo.Boxers");
             DropForeignKey("dbo.BoxingMatches", "SecondBoxer_Id", "dbo.Boxers");
             DropForeignKey("dbo.Predictions", "PredictionResult_Id", "dbo.PredictionResults");
+            DropForeignKey("dbo.Predictions", "PredictedWinner_Id", "dbo.Boxers");
             DropForeignKey("dbo.Predictions", "MadeFor_Id", "dbo.BoxingMatches");
             DropForeignKey("dbo.Predictions", "MadeBy_Id", "dbo.Users");
             DropForeignKey("dbo.BoxingMatches", "FirstBoxer_Id", "dbo.Boxers");
             DropIndex("dbo.Logins", new[] { "ForUser_Id" });
             DropIndex("dbo.Predictions", new[] { "PredictionResult_Id" });
+            DropIndex("dbo.Predictions", new[] { "PredictedWinner_Id" });
             DropIndex("dbo.Predictions", new[] { "MadeFor_Id" });
             DropIndex("dbo.Predictions", new[] { "MadeBy_Id" });
             DropIndex("dbo.BoxingMatches", new[] { "Winner_Id" });

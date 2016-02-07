@@ -60,13 +60,9 @@
     <Compile Include="DataEntities\PredictionResult.cs" />
     <Compile Include="DataEntities\User.cs" />
     <Compile Include="BoxingDbContext.cs" />
-    <Compile Include="Migrations\201602071921110_Init.cs" />
-    <Compile Include="Migrations\201602071921110_Init.Designer.cs">
-      <DependentUpon>201602071921110_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602071925363_AddPredictionWinnerColumn.cs" />
-    <Compile Include="Migrations\201602071925363_AddPredictionWinnerColumn.Designer.cs">
-      <DependentUpon>201602071925363_AddPredictionWinnerColumn.cs</DependentUpon>
+    <Compile Include="Migrations\201602071935452_Init.cs" />
+    <Compile Include="Migrations\201602071935452_Init.Designer.cs">
+      <DependentUpon>201602071935452_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,11 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602071921110_Init.resx">
-      <DependentUpon>201602071921110_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602071925363_AddPredictionWinnerColumn.resx">
-      <DependentUpon>201602071925363_AddPredictionWinnerColumn.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602071935452_Init.resx">
+      <DependentUpon>201602071935452_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
