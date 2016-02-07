@@ -22,6 +22,7 @@ namespace FMI.WeAzure.Boxing.Database
         MatchNotEnded = 1,
         Correct = 2,
         Incorrect = 3,
-        Canceled = 4
+        MatchCanceled = 4,
+        UserCanceled = 5
     }
 }

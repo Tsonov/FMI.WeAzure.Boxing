@@ -12,16 +12,7 @@ namespace FMI.WeAzure.Boxing.Database
     {
         [Key]
         public int Id { get; set; }
-
-        [NotMapped]
-        public PredictionResultEnum Result
-        {
-            get
-            {
-                return (PredictionResultEnum)PredictionResult.Id;
-            }
-        }
-
+        
         public virtual User MadeBy { get; set; }
 
         public virtual BoxingMatch MadeFor { get; set; }

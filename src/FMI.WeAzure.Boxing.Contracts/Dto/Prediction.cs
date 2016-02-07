@@ -17,7 +17,8 @@ namespace FMI.WeAzure.Boxing.Contracts.Dto
         public enum PredictionKind
         {
             FirstBoxerWins,
-            SecondBoxerWins
+            SecondBoxerWins,
+            Cancel
         }
     }
 
