@@ -20,7 +20,7 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
             {
                 throw new EntityDoesNotExistException("Login was not found");
             }
-            Context.Logins.Remove(login);
+            login.LogoutAt = DateTime.UtcNow;
             await Context.SaveChangesAsync();
             return Unit.Instance;
         }

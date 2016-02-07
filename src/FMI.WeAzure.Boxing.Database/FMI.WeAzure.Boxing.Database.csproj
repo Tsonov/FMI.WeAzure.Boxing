@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201602071935452_Init.Designer.cs">
       <DependentUpon>201602071935452_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602072020297_ReplaceLoginKey.cs" />
+    <Compile Include="Migrations\201602072020297_ReplaceLoginKey.Designer.cs">
+      <DependentUpon>201602072020297_ReplaceLoginKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +78,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602071935452_Init.resx">
       <DependentUpon>201602071935452_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602072020297_ReplaceLoginKey.resx">
+      <DependentUpon>201602072020297_ReplaceLoginKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
