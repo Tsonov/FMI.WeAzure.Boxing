@@ -1,5 +1,6 @@
 ﻿using FMI.WeAzure.Boxing.Business.Exceptions;
 using FMI.WeAzure.Boxing.Business.Interfaces;
+using FMI.WeAzure.Boxing.Business.Services;
 using FMI.WeAzure.Boxing.Contracts.Requests.Authentication;
 using FMI.WeAzure.Boxing.Database;
 using System;
@@ -14,16 +15,27 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
     public class LoginHandler : BaseHandler, IRequestHandler<LoginRequest, string>
     {
         private readonly RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
+        private readonly IPasswordService passwordService;
+
+        // TODO: Di
+        public LoginHandler()
+        {
+            this.passwordService = new PasswordService();
+        }
 
         public async Task<string> HandleAsync(LoginRequest request)
         {
-
-            // TODO: Proper password handling
-            var user = await Context.Users.FindAsync(request.UserInfo.Password);
+            var user = await Context.Users.FindAsync(request.UserInfo.UserName);
             if (user == null)
             {
                 throw new EntityDoesNotExistException("User for login is invalid");
             }
+
+            if (passwordService.ValidatePassword(request.UserInfo.Password, user.Password))
+            {
+                throw new WrongPasswordException("Invalid password provided");
+            }
+
             byte[] tokenRng = new byte[16];
             string token;
             bool alreadyExists;

@@ -15,6 +15,8 @@ namespace FMI.WeAzure.Boxing.Database
 
         public string Username { get; set; }
 
+        public string Password { get; set; }
+
         public string FullName { get; set; }
 
         public virtual ICollection<Prediction> Predictions { get; set; }
