@@ -23,6 +23,6 @@ namespace FMI.WeAzure.Boxing.Database
 
         public virtual DbSet<User> Users { get; set; }
 
-        public virtual DbSet<PredictionResultEntity> PredictionResultEntities { get; set; }
+        public virtual DbSet<PredictionResult> PredictionResults { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Database
 {
-    public class PredictionResultEntity
+    public class PredictionResult
     {
         [Key]
         public int Id { get; set; }
@@ -15,7 +15,7 @@ namespace FMI.WeAzure.Boxing.Database
         public string Description { get; set; }
     }
         
-    public enum PredictionResult
+    public enum PredictionResultEnum
     {
         Correct,
         Incorrect,

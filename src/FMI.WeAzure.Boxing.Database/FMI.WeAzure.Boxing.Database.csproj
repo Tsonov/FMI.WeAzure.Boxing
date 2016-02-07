@@ -60,13 +60,9 @@
     <Compile Include="DataEntities\PredictionResult.cs" />
     <Compile Include="DataEntities\User.cs" />
     <Compile Include="BoxingDbContext.cs" />
-    <Compile Include="Migrations\201602062001464_Init.cs" />
-    <Compile Include="Migrations\201602062001464_Init.Designer.cs">
-      <DependentUpon>201602062001464_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602062013330_AddPredictionResultTable.cs" />
-    <Compile Include="Migrations\201602062013330_AddPredictionResultTable.Designer.cs">
-      <DependentUpon>201602062013330_AddPredictionResultTable.cs</DependentUpon>
+    <Compile Include="Migrations\201602071921110_Init.cs" />
+    <Compile Include="Migrations\201602071921110_Init.Designer.cs">
+      <DependentUpon>201602071921110_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,11 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602062001464_Init.resx">
-      <DependentUpon>201602062001464_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602062013330_AddPredictionResultTable.resx">
-      <DependentUpon>201602062013330_AddPredictionResultTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602071921110_Init.resx">
+      <DependentUpon>201602071921110_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

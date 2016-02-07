@@ -15,18 +15,23 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
 
         protected override void Seed(FMI.WeAzure.Boxing.Database.BoxingDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            // Setup some admins
+            // Using only test values for demo purposes; should be generated in another way
+            context.Administrators.AddOrUpdate(
+                new Administrator() { Key = "AdminKey1", Active = true },
+                new Administrator() { Key = "AdminKey2", Active = true },
+                new Administrator() { Key = "AdminKey3", Active = false },
+                new Administrator() { Key = "AdminKey4", Active = true });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            // Setup prediction result types
+            var values =
+                Enum.GetNames(typeof(PredictionResultEnum))
+                .Zip(Enum.GetValues(typeof(PredictionResultEnum)).Cast<int>(),
+                    (Name, Value) => new { Name, Value })
+                .Select(a => new PredictionResult() { Id = a.Value, Description = a.Name })
+                .ToArray();
+
+            context.PredictionResults.AddOrUpdate(values);
         }
     }
 }

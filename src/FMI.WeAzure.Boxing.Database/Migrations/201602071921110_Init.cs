@@ -34,29 +34,34 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
                         Address = c.String(),
                         Time = c.DateTime(nullable: false),
                         Description = c.String(),
-                        FirstBoxerId = c.Int(),
-                        SecondBoxerId = c.Int(),
+                        FirstBoxer_Id = c.Int(),
+                        SecondBoxer_Id = c.Int(),
+                        Winner_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Boxers", t => t.FirstBoxerId)
-                .ForeignKey("dbo.Boxers", t => t.SecondBoxerId)
-                .Index(t => t.FirstBoxerId)
-                .Index(t => t.SecondBoxerId);
+                .ForeignKey("dbo.Boxers", t => t.FirstBoxer_Id)
+                .ForeignKey("dbo.Boxers", t => t.SecondBoxer_Id)
+                .ForeignKey("dbo.Boxers", t => t.Winner_Id)
+                .Index(t => t.FirstBoxer_Id)
+                .Index(t => t.SecondBoxer_Id)
+                .Index(t => t.Winner_Id);
             
             CreateTable(
                 "dbo.Predictions",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        PredictionResultId = c.Int(nullable: false),
-                        MadeById = c.Int(),
-                        MadeForId = c.Int(),
+                        MadeBy_Id = c.Int(),
+                        MadeFor_Id = c.Int(),
+                        PredictionResult_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.MadeById)
-                .ForeignKey("dbo.BoxingMatches", t => t.MadeForId)
-                .Index(t => t.MadeById)
-                .Index(t => t.MadeForId);
+                .ForeignKey("dbo.Users", t => t.MadeBy_Id)
+                .ForeignKey("dbo.BoxingMatches", t => t.MadeFor_Id)
+                .ForeignKey("dbo.PredictionResults", t => t.PredictionResult_Id)
+                .Index(t => t.MadeBy_Id)
+                .Index(t => t.MadeFor_Id)
+                .Index(t => t.PredictionResult_Id);
             
             CreateTable(
                 "dbo.Users",
@@ -69,35 +74,49 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.PredictionResults",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Description = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Logins",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        SourceIP = c.String(),
+                        IssuedAt = c.DateTime(nullable: false),
                         ExpiresAt = c.DateTime(nullable: false),
                         Token = c.String(),
                         LogoutAt = c.DateTime(nullable: false),
-                        ForUserId = c.Int(),
+                        ForUser_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.ForUserId)
-                .Index(t => t.ForUserId);
+                .ForeignKey("dbo.Users", t => t.ForUser_Id)
+                .Index(t => t.ForUser_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Logins", "ForUserId", "dbo.Users");
-            DropForeignKey("dbo.BoxingMatches", "SecondBoxerId", "dbo.Boxers");
-            DropForeignKey("dbo.Predictions", "MadeForId", "dbo.BoxingMatches");
-            DropForeignKey("dbo.Predictions", "MadeById", "dbo.Users");
-            DropForeignKey("dbo.BoxingMatches", "FirstBoxerId", "dbo.Boxers");
-            DropIndex("dbo.Logins", new[] { "ForUserId" });
-            DropIndex("dbo.Predictions", new[] { "MadeForId" });
-            DropIndex("dbo.Predictions", new[] { "MadeById" });
-            DropIndex("dbo.BoxingMatches", new[] { "SecondBoxerId" });
-            DropIndex("dbo.BoxingMatches", new[] { "FirstBoxerId" });
+            DropForeignKey("dbo.Logins", "ForUser_Id", "dbo.Users");
+            DropForeignKey("dbo.BoxingMatches", "Winner_Id", "dbo.Boxers");
+            DropForeignKey("dbo.BoxingMatches", "SecondBoxer_Id", "dbo.Boxers");
+            DropForeignKey("dbo.Predictions", "PredictionResult_Id", "dbo.PredictionResults");
+            DropForeignKey("dbo.Predictions", "MadeFor_Id", "dbo.BoxingMatches");
+            DropForeignKey("dbo.Predictions", "MadeBy_Id", "dbo.Users");
+            DropForeignKey("dbo.BoxingMatches", "FirstBoxer_Id", "dbo.Boxers");
+            DropIndex("dbo.Logins", new[] { "ForUser_Id" });
+            DropIndex("dbo.Predictions", new[] { "PredictionResult_Id" });
+            DropIndex("dbo.Predictions", new[] { "MadeFor_Id" });
+            DropIndex("dbo.Predictions", new[] { "MadeBy_Id" });
+            DropIndex("dbo.BoxingMatches", new[] { "Winner_Id" });
+            DropIndex("dbo.BoxingMatches", new[] { "SecondBoxer_Id" });
+            DropIndex("dbo.BoxingMatches", new[] { "FirstBoxer_Id" });
             DropTable("dbo.Logins");
+            DropTable("dbo.PredictionResults");
             DropTable("dbo.Users");
             DropTable("dbo.Predictions");
             DropTable("dbo.BoxingMatches");
