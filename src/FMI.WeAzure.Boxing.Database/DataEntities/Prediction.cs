@@ -30,6 +30,8 @@ namespace FMI.WeAzure.Boxing.Database
 
         public virtual BoxingMatch MadeFor { get; set; }
 
+        public virtual Boxer PredictedWinner { get; set; }
+
         public virtual PredictionResult PredictionResult { get; set; }
     }
 }
