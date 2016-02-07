@@ -20,10 +20,6 @@ namespace FMI.WeAzure.Boxing.Database
             {
                 return (PredictionResultEnum)PredictionResult.Id;
             }
-            set
-            {
-                PredictionResult.Id = (int)value;
-            }
         }
 
         public virtual User MadeBy { get; set; }

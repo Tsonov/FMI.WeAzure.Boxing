@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using FMI.WeAzure.Boxing.Contracts;
 using FMI.WeAzure.Boxing.Business.Exceptions;
 using FMI.WeAzure.Boxing.Database;
+using System.Data.Entity;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Predictions
 {
@@ -31,12 +32,15 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Predictions
             {
                 throw new EntityDoesNotExistException("Invalid user");
             }
+            var matchNotEndedEntity = (await Context.PredictionResults.ToListAsync()).Single(p => p.Id == (int)PredictionResultEnum.MatchNotEnded);
+            // TODO: Additional validations
 
             var newPrediction = new Prediction()
             {
                 MadeBy = user,
                 MadeFor = match,
-                // TODO: Result
+                PredictedWinner = winningBoxer,
+                PredictionResult = matchNotEndedEntity
             };
             Context.Predictions.Add(newPrediction);
             await Context.SaveChangesAsync();
