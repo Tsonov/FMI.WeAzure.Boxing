@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using FMI.WeAzure.Boxing.Database;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 {
     public class GetAllMatchesHandler : BaseHandler, IRequestHandler<GetAllMatchesRequest, IEnumerable<Match>>
     {
+        public GetAllMatchesHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<IEnumerable<Match>> HandleAsync(GetAllMatchesRequest request)
         {
             var orderedSet = request.SortOrder == Contracts.Dto.SortOrder.Ascending ?

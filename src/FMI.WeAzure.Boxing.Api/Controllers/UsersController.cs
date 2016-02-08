@@ -16,7 +16,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         // GET api/<controller>
         public async Task<IEnumerable<User>> Get(GetAllUsersRequest request)
         {
-            return await (new GetAllUsersHandler()).HandleAsync(request);
+            return null;
         }
 
         // GET api/<controller>/5

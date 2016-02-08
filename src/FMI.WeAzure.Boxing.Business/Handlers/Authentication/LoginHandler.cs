@@ -1,6 +1,7 @@
 ﻿using FMI.WeAzure.Boxing.Business.Exceptions;
 using FMI.WeAzure.Boxing.Business.Interfaces;
 using FMI.WeAzure.Boxing.Business.Services;
+using FMI.WeAzure.Boxing.Common;
 using FMI.WeAzure.Boxing.Contracts.Requests.Authentication;
 using FMI.WeAzure.Boxing.Database;
 using System;
@@ -17,10 +18,10 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
         private readonly RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
         private readonly IPasswordService passwordService;
 
-        // TODO: Di
-        public LoginHandler()
+        public LoginHandler(IPasswordService passwordService, BoxingDbContext context) : base(context)
         {
-            this.passwordService = new PasswordService();
+            Check.ThrowIfNull(passwordService, "passwordService", "Provided password service can not be null");
+            this.passwordService = passwordService;
         }
 
         public async Task<string> HandleAsync(LoginRequest request)

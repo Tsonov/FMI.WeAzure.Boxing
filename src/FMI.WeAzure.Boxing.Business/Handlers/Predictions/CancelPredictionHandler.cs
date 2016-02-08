@@ -14,6 +14,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Predictions
 {
     public class CancelPredictionHandler : BaseHandler, ICommandHandler<CancelPredictionRequest>
     {
+        public CancelPredictionHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<Unit> HandleAsync(CancelPredictionRequest request)
         {
             // TODO: Ensure proper user sends this

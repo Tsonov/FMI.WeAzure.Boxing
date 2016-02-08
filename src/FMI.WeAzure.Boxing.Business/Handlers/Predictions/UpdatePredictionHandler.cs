@@ -14,6 +14,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Predictions
 {
     public class UpdatePredictionHandler : BaseHandler, ICommandHandler<UpdatePredictionRequest>
     {
+        public UpdatePredictionHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<Unit> HandleAsync(UpdatePredictionRequest request)
         {
             // TODO: Ensure proper user sends this

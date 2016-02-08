@@ -1,5 +1,6 @@
 ﻿using FMI.WeAzure.Boxing.Business.Interfaces;
 using FMI.WeAzure.Boxing.Contracts.Requests.Users;
+using FMI.WeAzure.Boxing.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
 {
     public class GetUserHandler : BaseHandler, IRequestHandler<GetUserRequest, Dto.User>
     {
+        public GetUserHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<Dto.User> HandleAsync(GetUserRequest request)
         {
             var dbUser = await Context.Users.FindAsync(request.UserName);

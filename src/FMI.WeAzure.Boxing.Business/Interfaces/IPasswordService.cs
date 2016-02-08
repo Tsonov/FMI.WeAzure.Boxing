@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Business.Interfaces
 {
-    internal interface IPasswordService
+    public interface IPasswordService
     {
         string CreateHash(string password);
 

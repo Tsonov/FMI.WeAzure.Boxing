@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Database
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Business.Tests", "FMI.WeAzure.Boxing.Business.Tests\FMI.WeAzure.Boxing.Business.Tests.csproj", "{B25C3F80-F7FE-4E9C-8984-57CAB16964A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Common", "FMI.WeAzure.Boxing.Common\FMI.WeAzure.Boxing.Common.csproj", "{9E140030-6812-4022-AFF3-AB421A9E9882}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{B25C3F80-F7FE-4E9C-8984-57CAB16964A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B25C3F80-F7FE-4E9C-8984-57CAB16964A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B25C3F80-F7FE-4E9C-8984-57CAB16964A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E140030-6812-4022-AFF3-AB421A9E9882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E140030-6812-4022-AFF3-AB421A9E9882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E140030-6812-4022-AFF3-AB421A9E9882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E140030-6812-4022-AFF3-AB421A9E9882}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

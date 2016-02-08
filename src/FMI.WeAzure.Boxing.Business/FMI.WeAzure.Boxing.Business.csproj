@@ -72,6 +72,10 @@
     <Compile Include="Services\PasswordService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FMI.WeAzure.Boxing.Common\FMI.WeAzure.Boxing.Common.csproj">
+      <Project>{9e140030-6812-4022-aff3-ab421a9e9882}</Project>
+      <Name>FMI.WeAzure.Boxing.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMI.WeAzure.Boxing.Contracts\FMI.WeAzure.Boxing.Contracts.csproj">
       <Project>{8619650c-b203-4739-b49f-f888d7bbf004}</Project>
       <Name>FMI.WeAzure.Boxing.Contracts</Name>

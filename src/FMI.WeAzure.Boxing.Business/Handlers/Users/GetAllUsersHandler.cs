@@ -14,6 +14,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
 {
     public class GetAllUsersHandler : BaseHandler, IRequestHandler<GetAllUsersRequest, IEnumerable<Dto.User>>
     {
+        public GetAllUsersHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<IEnumerable<Dto.User>> HandleAsync(GetAllUsersRequest request)
         {
             Expression<Func<User, object>> orderer;

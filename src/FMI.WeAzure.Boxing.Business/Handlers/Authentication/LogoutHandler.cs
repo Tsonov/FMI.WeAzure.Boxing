@@ -13,6 +13,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
 {
     public class LogoutHandler : BaseHandler, ICommandHandler<LogoutRequest>
     {
+        public LogoutHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<Unit> HandleAsync(LogoutRequest request)
         {
             var login = await Context.Logins.FindAsync(request.Token);

@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 using FMI.WeAzure.Boxing.Contracts;
 using FMI.WeAzure.Boxing.Contracts.Requests.Matches;
 using FMI.WeAzure.Boxing.Business.Exceptions;
+using FMI.WeAzure.Boxing.Database;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 {
     public class SetMatchResultHandler : BaseHandler, ICommandHandler<SetMatchResultRequest>
     {
+        public SetMatchResultHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<Unit> HandleAsync(SetMatchResultRequest request)
         {
             var match = await Context.BoxingMatches.FindAsync(request.MatchId);

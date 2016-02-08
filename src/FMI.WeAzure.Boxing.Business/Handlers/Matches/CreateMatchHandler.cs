@@ -12,6 +12,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 {
     public class CreateMatchHandler : BaseHandler, ICommandHandler<CreateMatchRequest>
     {
+        public CreateMatchHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<Unit> HandleAsync(CreateMatchRequest request)
         {
             var entity = new BoxingMatch()

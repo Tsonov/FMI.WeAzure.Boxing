@@ -9,16 +9,18 @@ using FMI.WeAzure.Boxing.Database;
 using Dto = FMI.WeAzure.Boxing.Contracts.Dto;
 using FMI.WeAzure.Boxing.Contracts.Requests.Users;
 using FMI.WeAzure.Boxing.Business.Services;
+using FMI.WeAzure.Boxing.Common;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Users
 {
     public class CreateUserHandler : BaseHandler, ICommandHandler<CreateUserRequest>
     {
         private readonly IPasswordService passwordService;
-        // TODO: DI
-        public CreateUserHandler()
+
+        public CreateUserHandler(IPasswordService passwordService, BoxingDbContext context) : base(context)
         {
-            passwordService = new PasswordService();
+            Check.ThrowIfNull(passwordService, "passwordService", "Provided password service can not be null");
+            this.passwordService = passwordService;
         }
 
         public async Task<Unit> HandleAsync(CreateUserRequest request)

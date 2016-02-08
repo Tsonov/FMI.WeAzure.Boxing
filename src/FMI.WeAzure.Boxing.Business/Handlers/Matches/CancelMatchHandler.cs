@@ -15,6 +15,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 {
     public class CancelMatchHandler : BaseHandler, ICommandHandler<CancelMatchRequest>
     {
+        public CancelMatchHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<Unit> HandleAsync(CancelMatchRequest request)
         {
             var match = await Context.BoxingMatches.FindAsync(request.MatchId);

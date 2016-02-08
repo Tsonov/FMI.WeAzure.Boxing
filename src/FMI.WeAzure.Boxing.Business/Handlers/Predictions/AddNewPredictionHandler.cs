@@ -14,6 +14,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Predictions
 {
     public class AddNewPredictionHandler : BaseHandler, ICommandHandler<AddNewPredictionRequest>
     {
+        public AddNewPredictionHandler(BoxingDbContext context) : base(context)
+        {
+
+        }
+
         public async Task<Unit> HandleAsync(AddNewPredictionRequest request)
         {
             // TODO: Single prediction by user?

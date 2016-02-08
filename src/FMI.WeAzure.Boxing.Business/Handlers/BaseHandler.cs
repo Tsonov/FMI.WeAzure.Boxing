@@ -1,4 +1,5 @@
-﻿using FMI.WeAzure.Boxing.Database;
+﻿using FMI.WeAzure.Boxing.Common;
+using FMI.WeAzure.Boxing.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace FMI.WeAzure.Boxing.Business.Handlers
     {
         protected readonly BoxingDbContext Context;
 
-        protected BaseHandler()
+        protected BaseHandler(BoxingDbContext context)
         {
-            Context = new BoxingDbContext();
+            Check.ThrowIfNull(context, "context", "Provided database context can not be null");
+            this.Context = new BoxingDbContext();
         }
 
         public void Dispose()
