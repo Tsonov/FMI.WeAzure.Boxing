@@ -26,13 +26,13 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
 
         public async Task<string> HandleAsync(LoginRequest request)
         {
-            var user = await Context.Users.FindAsync(request.UserInfo.UserName);
+            var user = await Context.Users.FindAsync(request.UserName);
             if (user == null)
             {
                 throw new EntityDoesNotExistException("User for login is invalid");
             }
 
-            if (passwordService.ValidatePassword(request.UserInfo.Password, user.Password))
+            if (passwordService.ValidatePassword(request.Password, user.Password))
             {
                 throw new WrongPasswordException("Invalid password provided");
             }

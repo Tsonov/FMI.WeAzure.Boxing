@@ -10,6 +10,8 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Authentication
 {
     public class LoginRequest : IRequest<string>
     {
-        public User UserInfo { get; set; }
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
     }
 }
