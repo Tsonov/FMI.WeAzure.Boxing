@@ -1,4 +1,4 @@
-﻿using FMI.WeAzure.Boxing.Business.Handlers.Users;
+﻿using FMI.WeAzure.Boxing.Business.Interfaces;
 using FMI.WeAzure.Boxing.Contracts.Dto;
 using FMI.WeAzure.Boxing.Contracts.Requests.Users;
 using System;
@@ -13,47 +13,43 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 {
     public class UsersController : ApiController
     {
-        // GET api/<controller>
+        private readonly IRequestHandler<GetAllUsersRequest, IEnumerable<User>> getAllHandler;
+        private readonly IRequestHandler<GetUserRequest, User> getSingleHandler;
+        private readonly ICommandHandler<DeleteUserRequest> deleteUserHandler;
+        private readonly ICommandHandler<CreateUserRequest> createUserHandler;
+
+        public UsersController
+            (
+                IRequestHandler<GetAllUsersRequest, IEnumerable<User>> getAllHandler,
+                IRequestHandler<GetUserRequest, User> getSingleHandler,
+                ICommandHandler<DeleteUserRequest> deleteUserHandler,
+                ICommandHandler<CreateUserRequest> createUserHandler
+            )
+        {
+            this.getAllHandler = getAllHandler;
+            this.getSingleHandler = getSingleHandler;
+            this.deleteUserHandler = deleteUserHandler;
+            this.createUserHandler = createUserHandler;
+        }
+
         public async Task<IEnumerable<User>> Get(GetAllUsersRequest request)
         {
-            return null;
+            return await getAllHandler.HandleAsync(request);
         }
 
-        // GET api/<controller>/5
-        public IHttpActionResult Get(int id)
+        public async Task<User> Get(GetUserRequest request)
         {
-            var user = AwesomeDataRepository.Users.SingleOrDefault(x => x.Id == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(user);
-            }
+            return await getSingleHandler.HandleAsync(request);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]User user)
+        public async Task Post(CreateUserRequest request)
         {
-            if (user == null)
-            {
-                throw new Exception("Invalid null user");
-            }
-            AwesomeDataRepository.Users.Add(user);
-
-            
+            await createUserHandler.HandleAsync(request);
         }
        
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        public async Task Delete(DeleteUserRequest request)
         {
-            // TODO: Needs admin validation
-            var item = AwesomeDataRepository.Users.SingleOrDefault(u => u.Id == id);
-            if (item != null)
-            {
-                AwesomeDataRepository.Users.Remove(item);
-            }
+            await deleteUserHandler.HandleAsync(request);
         }
     }
 }

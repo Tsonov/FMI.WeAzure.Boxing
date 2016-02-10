@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Business.Interfaces
 {
-    public interface IRequestHandler<in TRequest, TResponse> : IDisposable
-        where TRequest : IRequest<TResponse>, new()
+    public interface IRequestHandler<in TRequest, TResponse>
+        where TRequest : IRequest<TResponse>
     {
         /// <summary>
         /// Handles an asynchronous request

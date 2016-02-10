@@ -1,64 +1,47 @@
-﻿using FMI.WeAzure.Boxing.Contracts.Dto;
+﻿using FMI.WeAzure.Boxing.Business.Interfaces;
+using FMI.WeAzure.Boxing.Contracts.Dto;
+using FMI.WeAzure.Boxing.Contracts.Requests.Matches;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace FMI.WeAzure.Boxing.Api.Controllers
 {
     public class MatchesController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<Match> Get([FromBody] string searchString = "", 
-            [FromUri] int skip = 0, 
-            [FromUri] int take = 10)
+        private readonly IRequestHandler<GetAllMatchesRequest, IEnumerable<Match>> getAllHandler;
+        private readonly ICommandHandler<CreateMatchRequest> createMatchHandler;
+        private readonly ICommandHandler<CancelMatchRequest> cancelMatchHandler;
+
+        public MatchesController
+            (
+               IRequestHandler<GetAllMatchesRequest, IEnumerable<Match>> getAllHandler,
+               ICommandHandler<CreateMatchRequest> createMatchHandler,
+               ICommandHandler<CancelMatchRequest> cancelMatchHandler
+            )
         {
-            return null;
+            this.getAllHandler = getAllHandler;
+            this.createMatchHandler = createMatchHandler;
+            this.cancelMatchHandler = cancelMatchHandler;
         }
 
-        // GET api/<controller>/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        // POST api/<controller>
-        public Match Post([FromBody]Match match)
+        public async Task<IEnumerable<Match>> Get(GetAllMatchesRequest request)
         {
-            match.Id = AwesomeDataRepository.Matches.Select(x => x.Id).DefaultIfEmpty(0).Max() + 1;
-            AwesomeDataRepository.Matches.Add(match);
-            // TODO: Id
-            return match;
+            return await getAllHandler.HandleAsync(request);
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]Match value)
+        public async Task Post(CreateMatchRequest request)
         {
-            var existing = AwesomeDataRepository.Matches.SingleOrDefault(m => m.Id == id);
-            if (existing == null)
-            {
-                // TODO: Handles
-                throw new Exception("Invalid id for match to update");
-            }
-            AwesomeDataRepository.Matches.Remove(existing);
-            AwesomeDataRepository.Matches.Add(value);
+            await createMatchHandler.HandleAsync(request);
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        public async Task Delete(CancelMatchRequest request)
         {
-            // TODO: Check for admin
-            var match = AwesomeDataRepository.Matches.SingleOrDefault(x => x.Id == id);
-            if (match == null)
-            {
-                // TODO: Better code
-                throw new Exception("Invalid match");
-            }
-
-            // TODO: Predictions
-            AwesomeDataRepository.Matches.Remove(match);
+            await cancelMatchHandler.HandleAsync(request);
         }
 
         [HttpPost]
@@ -79,8 +62,6 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         [Route("api/matches/{id}/predictions")]
         public void PutPrediction([FromUri] int id, [FromBody] Prediction prediction)
         {
-            // TODO: Make a "is deactivated field"
-            // TODO: Implement
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Business.Services
 {
-    internal sealed class PasswordService : IPasswordService
+    public sealed class PasswordService : IPasswordService
     {
         private static readonly RNGCryptoServiceProvider CspRng = new RNGCryptoServiceProvider();
         private const int SaltSizeBytes = 32;

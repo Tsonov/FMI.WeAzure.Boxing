@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Business.Interfaces
 {
-    interface ICommandHandler<TRequest> : IRequestHandler<TRequest, Unit>
+    public interface ICommandHandler<TRequest> : IRequestHandler<TRequest, Unit>
         where TRequest : IRequest, new()
     {
     }
