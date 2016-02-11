@@ -25,10 +25,11 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
 
         public async Task<Unit> HandleAsync(CreateUserRequest request)
         {
-            var password = passwordService.CreateHash(request.UserInfo.Password);
+            var password = passwordService.CreateHash(request.Password);
             var newEntity = new User()
             {
-                FullName = request.UserInfo.UserName,
+                Username = request.UserName,
+                FullName = request.FullName,
                 Password = password
             };
             Context.Users.Add(newEntity);

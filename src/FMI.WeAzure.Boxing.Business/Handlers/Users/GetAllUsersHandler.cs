@@ -26,7 +26,8 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
             {
                 case Dto.UserOrderColumn.Rating:
                     //orderer = (user) => 
-                    orderer = (user) => user.Id;
+                    // TODO
+                    orderer = (user) => user.Username;
                     break;
                 case Dto.UserOrderColumn.FullName:
                     orderer = (user) => user.FullName;
@@ -46,7 +47,6 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
                 .ToListAsync())
                 .Select(user => new Dto.User()
                 {
-                    Id = user.Id,
                     UserName = user.Username
                 });
 

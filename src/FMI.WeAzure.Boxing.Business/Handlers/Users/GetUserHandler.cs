@@ -20,6 +20,7 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
         public async Task<Dto.User> HandleAsync(GetUserRequest request)
         {
             var dbUser = await Context.Users.FindAsync(request.UserName);
+            // TODO: Handle missing
             return new Dto.User()
             {
                 UserName = dbUser.Username

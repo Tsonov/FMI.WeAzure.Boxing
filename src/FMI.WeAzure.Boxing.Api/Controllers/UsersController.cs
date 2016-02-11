@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace FMI.WeAzure.Boxing.Api.Controllers
 {
+    [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
         private readonly IRequestHandler<GetAllUsersRequest, IEnumerable<User>> getAllHandler;
@@ -32,22 +33,29 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             this.createUserHandler = createUserHandler;
         }
 
-        public async Task<IEnumerable<User>> Get(GetAllUsersRequest request)
+        [Route("")]
+        public async Task<IEnumerable<User>> Get([FromUri] GetAllUsersRequest request)
         {
             return await getAllHandler.HandleAsync(request);
         }
 
-        public async Task<User> Get(GetUserRequest request)
+        [Route("{username}")]
+        [HttpGet]
+        public async Task<User> Get([FromUri] GetUserRequest request)
         {
             return await getSingleHandler.HandleAsync(request);
         }
 
-        public async Task Post(CreateUserRequest request)
+        [Route("")]
+        [HttpPost]
+        public async Task Post([FromBody] CreateUserRequest request)
         {
             await createUserHandler.HandleAsync(request);
         }
-       
-        public async Task Delete(DeleteUserRequest request)
+
+        [Route("")]
+        [HttpDelete]
+        public async Task Delete([FromUri] DeleteUserRequest request)
         {
             await deleteUserHandler.HandleAsync(request);
         }

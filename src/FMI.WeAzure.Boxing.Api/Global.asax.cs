@@ -41,7 +41,8 @@ namespace FMI.WeAzure.Boxing.Api
 
             builder.RegisterType<BoxingDbContext>()
                    .InstancePerRequest()
-                   .AsSelf();
+                   .AsSelf()
+                   .WithParameter(new TypedParameter(typeof(string), "name=BoxingEntities"));
 
             builder.RegisterType<PasswordService>()
                    .As<IPasswordService>();
