@@ -15,7 +15,7 @@ namespace FMI.WeAzure.Boxing.Business.Handlers
         protected BaseHandler(BoxingDbContext context)
         {
             Check.ThrowIfNull(context, "context", "Provided database context can not be null");
-            this.Context = new BoxingDbContext();
+            this.Context = context;
         }
 
         public void Dispose()
