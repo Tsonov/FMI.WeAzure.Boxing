@@ -16,7 +16,6 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
     {
         public GetAllUsersHandler(BoxingDbContext context) : base(context)
         {
-
         }
 
         public async Task<IEnumerable<Dto.User>> HandleAsync(GetAllUsersRequest request)
@@ -47,7 +46,8 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
                 .ToListAsync())
                 .Select(user => new Dto.User()
                 {
-                    UserName = user.Username
+                    UserName = user.Username,
+                    FullName = user.FullName
                 });
 
 

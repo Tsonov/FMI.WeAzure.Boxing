@@ -13,6 +13,7 @@ using System.Web.Http;
 
 namespace FMI.WeAzure.Boxing.Api.Controllers
 {
+    [RoutePrefix("api/logins")]
     public class LoginsController : ApiController
     {
         private readonly IRequestHandler<LoginRequest, string> loginHandler;
@@ -28,15 +29,17 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             this.logoutHandler = logoutHandler;
         }
         
+        [Route("")]
         [HttpPost]
         public async Task<string> Post([FromBody] LoginRequest request)
         {
             return await loginHandler.HandleAsync(request);
         }
 
+        [Route("{token}")]
         [HttpDelete]
         [LoggedIn]
-        public async Task Delete([FromBody] LogoutRequest request)
+        public async Task Delete([FromUri] LogoutRequest request)
         {
             await logoutHandler.HandleAsync(request);
         }

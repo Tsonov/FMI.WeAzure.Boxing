@@ -29,6 +29,7 @@ namespace FMI.WeAzure.Boxing.Api.Infrastructure.Filters
             var headers = actionContext.Request.Headers;
             IEnumerable<string> values;
             var token = string.Empty;
+            // TODO: Use authorization header?
             if (headers.TryGetValues(Headers.UserTokenHeader, out values))
             {
                 token = values.FirstOrDefault();
@@ -40,6 +41,7 @@ namespace FMI.WeAzure.Boxing.Api.Infrastructure.Filters
             }
 
             actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
+            await base.OnAuthorizationAsync(actionContext, cancellationToken);
         }
     }
 }

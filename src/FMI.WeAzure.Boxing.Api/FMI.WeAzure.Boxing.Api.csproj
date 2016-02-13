@@ -89,7 +89,6 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="AwesomeDataRepository.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />

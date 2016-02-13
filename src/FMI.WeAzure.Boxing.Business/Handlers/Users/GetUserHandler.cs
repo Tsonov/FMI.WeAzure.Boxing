@@ -23,7 +23,8 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
             // TODO: Handle missing
             return new Dto.User()
             {
-                UserName = dbUser.Username
+                UserName = dbUser.Username,
+                FullName = dbUser.FullName
             };
         }
     }

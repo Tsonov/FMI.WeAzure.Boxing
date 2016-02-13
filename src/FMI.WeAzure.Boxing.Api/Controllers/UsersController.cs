@@ -37,6 +37,11 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         [Route("")]
         public async Task<IEnumerable<User>> Get([FromUri] GetAllUsersRequest request)
         {
+            // TODO: Investigate why doesn't it get initialized...
+            if (request == null)
+            {
+                request = new GetAllUsersRequest();
+            }
             return await getAllHandler.HandleAsync(request);
         }
 
