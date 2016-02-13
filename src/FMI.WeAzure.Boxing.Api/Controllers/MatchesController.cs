@@ -1,4 +1,5 @@
-﻿using FMI.WeAzure.Boxing.Business.Interfaces;
+﻿using FMI.WeAzure.Boxing.Api.Infrastructure.Filters;
+using FMI.WeAzure.Boxing.Business.Interfaces;
 using FMI.WeAzure.Boxing.Contracts.Dto;
 using FMI.WeAzure.Boxing.Contracts.Requests.Matches;
 using FMI.WeAzure.Boxing.Contracts.Requests.Predictions;
@@ -52,6 +53,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("expired")]
         [HttpGet]
+        [AdminOnly]
         public async Task<IEnumerable<Match>> Get([FromUri] GetAllExpiredMatchesRequest request)
         {
             return await getAllExpiredHandler.HandleAsync(request);
@@ -59,6 +61,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("")]
         [HttpPost]
+        [AdminOnly]
         public async Task Post([FromBody] CreateMatchRequest request)
         {
             await createMatchHandler.HandleAsync(request);
@@ -66,6 +69,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("{matchId:int}")]
         [HttpDelete]
+        [AdminOnly]
         public async Task Delete([FromUri] CancelMatchRequest request)
         {
             await cancelMatchHandler.HandleAsync(request);

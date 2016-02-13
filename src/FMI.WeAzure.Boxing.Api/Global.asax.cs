@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
+using FMI.WeAzure.Boxing.Api.Infrastructure.Filters;
 using FMI.WeAzure.Boxing.Business.Interfaces;
 using FMI.WeAzure.Boxing.Business.Services;
 using FMI.WeAzure.Boxing.Database;
@@ -45,7 +46,13 @@ namespace FMI.WeAzure.Boxing.Api
                    .WithParameter(new TypedParameter(typeof(string), "name=BoxingEntities"));
 
             builder.RegisterType<PasswordService>()
+                   .InstancePerRequest()
                    .As<IPasswordService>();
+
+            builder.RegisterType<AuthorizationService>()
+                   .InstancePerRequest()
+                   .As<IAuthorizationService>();
+
 
             var container = builder.Build();
 

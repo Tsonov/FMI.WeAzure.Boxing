@@ -10,6 +10,12 @@ namespace FMI.WeAzure.Boxing.Database
 {
     public class User
     {
+        public User()
+        {
+            Predictions = new HashSet<Prediction>();
+            Logins = new HashSet<Login>();
+        }
+
         [Key]
         public string Username { get; set; }
 

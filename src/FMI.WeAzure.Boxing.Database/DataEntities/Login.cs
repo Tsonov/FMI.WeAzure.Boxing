@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,18 @@ namespace FMI.WeAzure.Boxing.Database
         public DateTime IssuedAt { get; set; }
 
         public DateTime ExpiresAt { get; set; }
-        
+
         public DateTime? LogoutAt { get; set; }
 
         public virtual User ForUser { get; set; }
+
+        [NotMapped]
+        public bool Expired
+        {
+            get
+            {
+                return ExpiresAt >= DateTime.UtcNow || LogoutAt != null;
+            }
+        }
     }
 }

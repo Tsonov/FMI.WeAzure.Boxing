@@ -46,6 +46,7 @@
     <Compile Include="Dto\User.cs" />
     <Compile Include="Interfaces\IPagedRequest.cs" />
     <Compile Include="Interfaces\IRequest.cs" />
+    <Compile Include="Names\Headers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Authentication\LoginRequest.cs" />
     <Compile Include="Requests\Authentication\LogoutRequest.cs" />

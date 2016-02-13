@@ -13,7 +13,7 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(FMI.WeAzure.Boxing.Database.BoxingDbContext context)
+        protected override void Seed(BoxingDbContext context)
         {
             // Setup some admins
             // Using only test values for demo purposes; should be generated in another way

@@ -1,4 +1,5 @@
-﻿using FMI.WeAzure.Boxing.Business.Interfaces;
+﻿using FMI.WeAzure.Boxing.Api.Infrastructure.Filters;
+using FMI.WeAzure.Boxing.Business.Interfaces;
 using FMI.WeAzure.Boxing.Contracts.Dto;
 using FMI.WeAzure.Boxing.Contracts.Requests.Users;
 using System;
@@ -55,6 +56,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("{username}")]
         [HttpDelete]
+        [AdminOnly]
         public async Task Delete([FromUri] DeleteUserRequest request)
         {
             await deleteUserHandler.HandleAsync(request);
