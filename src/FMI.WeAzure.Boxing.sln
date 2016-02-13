@@ -22,6 +22,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		..\docs\Boxingpredictions_requirements.pdf = ..\docs\Boxingpredictions_requirements.pdf
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Web", "FMI.WeAzure.Boxing.Web\FMI.WeAzure.Boxing.Web.csproj", "{435D8FB3-DC63-4833-8B89-50BE52194E65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{6D5BB029-8052-4D19-999A-15EE20C479A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{03F71CCB-D140-43FD-9725-597B9FBA047E}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{497D80D5-C18E-4ABA-8CE3-F321954B180B}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\FMIWeAzureBoxingWeb.json = PublishScripts\Templates\FMIWeAzureBoxingWeb.json
+		PublishScripts\Templates\FMIWeAzureBoxingWeb.param.dev.json = PublishScripts\Templates\FMIWeAzureBoxingWeb.param.dev.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,8 +71,16 @@ Global
 		{9E140030-6812-4022-AFF3-AB421A9E9882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E140030-6812-4022-AFF3-AB421A9E9882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E140030-6812-4022-AFF3-AB421A9E9882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{435D8FB3-DC63-4833-8B89-50BE52194E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{435D8FB3-DC63-4833-8B89-50BE52194E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{435D8FB3-DC63-4833-8B89-50BE52194E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{435D8FB3-DC63-4833-8B89-50BE52194E65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03F71CCB-D140-43FD-9725-597B9FBA047E} = {6D5BB029-8052-4D19-999A-15EE20C479A7}
+		{497D80D5-C18E-4ABA-8CE3-F321954B180B} = {6D5BB029-8052-4D19-999A-15EE20C479A7}
 	EndGlobalSection
 EndGlobal
