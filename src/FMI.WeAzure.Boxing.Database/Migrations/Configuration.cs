@@ -30,8 +30,17 @@ namespace FMI.WeAzure.Boxing.Database.Migrations
                     (Name, Value) => new { Name, Value })
                 .Select(a => new PredictionResult() { Id = a.Value, Description = a.Name })
                 .ToArray();
-
             context.PredictionResults.AddOrUpdate(values);
+
+            // Setup some boxers for test and demo purposes
+            context.Boxers.AddOrUpdate(
+                x => x.Name,
+                new Boxer() { Name = "Dragan", Biography = "Awesome fighter" },
+                new Boxer() { Name = "Petkan", Biography = "Dramatic story" },
+                new Boxer() { Name = "Rocky", Biography = "You should know this" },
+                new Boxer() { Name = "Ivan", Biography = "No info" }
+            );
+
         }
     }
 }

@@ -22,22 +22,19 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Predictions
         public async Task<Unit> HandleAsync(UpdatePredictionRequest request)
         {
             // TODO: Ensure proper user sends this
-            var prediction = await Context.Predictions.FindAsync(request.Prediction.Id);
+            var prediction = await Context.Predictions.FindAsync(request.PredictionId);
             if (prediction == null)
             {
                 throw new EntityDoesNotExistException("No such prediction");
             }
 
-            switch (request.Prediction.UserPrediction)
+            switch (request.UserPrediction)
             {
-                case Contracts.Dto.Prediction.PredictionKind.FirstBoxerWins:
+                case PredictionKind.FirstBoxerWins:
                     prediction.PredictedWinner = prediction.MadeFor.FirstBoxer;
                     break;
-                case Contracts.Dto.Prediction.PredictionKind.SecondBoxerWins:
+                case PredictionKind.SecondBoxerWins:
                     prediction.PredictedWinner = prediction.MadeFor.SecondBoxer;
-                    break;
-                case Contracts.Dto.Prediction.PredictionKind.Cancel:
-                    prediction.PredictionResult = (await Context.PredictionResults.ToListAsync()).Single(p => p.Id == (int)PredictionResultEnum.UserCanceled);
                     break;
                 default:
                     throw new Exception("Invalid prediction kind value; validation did not work correctly");

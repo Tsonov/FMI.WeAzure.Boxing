@@ -42,41 +42,43 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("")]
         [HttpGet]
-        public async Task<IEnumerable<Match>> Get(GetAllMatchesRequest request)
+        public async Task<IEnumerable<Match>> Get([FromUri] GetAllMatchesRequest request)
         {
             return await getAllHandler.HandleAsync(request);
         }
 
         [Route("")]
         [HttpPost]
-        public async Task Post([FromBody]CreateMatchRequest request)
+        public async Task Post([FromBody] CreateMatchRequest request)
         {
             await createMatchHandler.HandleAsync(request);
         }
 
-        [Route("")]
+        [Route("{matchId:int}")]
         [HttpDelete]
-        public async Task Delete(CancelMatchRequest request)
+        public async Task Delete([FromUri] CancelMatchRequest request)
         {
             await cancelMatchHandler.HandleAsync(request);
         }
 
-        [Route("api/matches/{id}/predictions")]
+        [Route("{matchId:int}/predictions")]
         [HttpPost]
-        public async Task AddPredictions([FromBody] AddNewPredictionRequest request)
+        public async Task AddPredictions(int matchId, [FromBody] AddNewPredictionRequest request)
         {
+            request.MatchId = matchId;
             await addPredictionHandler.HandleAsync(request);
         }
 
-        [Route("api/matches/{id}/predictions")]
+        [Route("{matchId:int}/predictions/{predictionId:int}")]
         [HttpPut]
-        public async Task PutPrediction(UpdatePredictionRequest request)
+        public async Task PutPrediction(int matchId, int predictionId, [FromBody] UpdatePredictionRequest request)
         {
+            request.PredictionId = predictionId;
             await updatePredictionHandler.HandleAsync(request);
         }
 
 
-        [Route("api/matches/{id}/predictions")]
+        [Route("{matchId:int}/predictions")]
         [HttpDelete]
         public async Task CancelPrediction(CancelPredictionRequest request)
         {

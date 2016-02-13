@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FMI.WeAzure.Boxing.Contracts;
 using FMI.WeAzure.Boxing.Database;
+using FMI.WeAzure.Boxing.Business.Exceptions;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 {
@@ -19,13 +20,24 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 
         public async Task<Unit> HandleAsync(CreateMatchRequest request)
         {
+            var firstBoxer = await Context.Boxers.FindAsync(request.FirstBoxer);
+            if (firstBoxer == null)
+            {
+                throw new EntityDoesNotExistException("Provided boxer does not exist");
+            }
+            var secondBoxer = await Context.Boxers.FindAsync(request.SecondBoxer);
+            if (secondBoxer == null)
+            {
+                throw new EntityDoesNotExistException("Provided boxer does not exist");
+            }
+
             var entity = new BoxingMatch()
             {
-                Address = request.MatchInfo.Address,
-                FirstBoxer = await Context.Boxers.FindAsync(request.MatchInfo.FirstBoxer),
-                SecondBoxer = await Context.Boxers.FindAsync(request.MatchInfo.SecondBoxer),
-                Description = request.MatchInfo.Description,
-                Time = request.MatchInfo.Date
+                Address = request.Address,
+                FirstBoxer = firstBoxer,
+                SecondBoxer = secondBoxer,
+                Description = request.Description,
+                Time = request.Date
             };
             Context.BoxingMatches.Add(entity);
             await Context.SaveChangesAsync();

@@ -10,6 +10,15 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Matches
 {
     public class CreateMatchRequest : IRequest
     {
-        public Match MatchInfo{ get; set; }
+        public int FirstBoxer { get; set; }
+
+        public int SecondBoxer { get; set; }
+
+        public string Address { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string Description { get; set; }
+
     }
 }

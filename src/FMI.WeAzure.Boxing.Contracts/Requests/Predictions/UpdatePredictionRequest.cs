@@ -10,6 +10,15 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Predictions
 {
     public class UpdatePredictionRequest : IRequest
     {
-        public Prediction Prediction { get; set; }
+        public int PredictionId { get; set; }
+
+        public PredictionKind UserPrediction { get; set; }
+    }
+
+
+    public enum PredictionKind
+    {
+        FirstBoxerWins,
+        SecondBoxerWins
     }
 }

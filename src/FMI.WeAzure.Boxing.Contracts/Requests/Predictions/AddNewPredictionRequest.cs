@@ -13,6 +13,6 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Predictions
 
         public int PredictedWinner { get; set; }
 
-        public int MadeByUser { get; set; }
+        public string MadeByUser { get; set; }
     }
 }
