@@ -51,6 +51,7 @@
     <Compile Include="Requests\Authentication\LogoutRequest.cs" />
     <Compile Include="Requests\Matches\CancelMatchRequest.cs" />
     <Compile Include="Requests\Matches\CreateMatchRequest.cs" />
+    <Compile Include="Requests\Matches\GetAllExpiredMatchesRequest.cs" />
     <Compile Include="Requests\Matches\GetAllMatchesRequest.cs" />
     <Compile Include="Requests\Matches\SearchForMatchRequest.cs" />
     <Compile Include="Requests\Matches\SetMatchResultRequest.cs" />

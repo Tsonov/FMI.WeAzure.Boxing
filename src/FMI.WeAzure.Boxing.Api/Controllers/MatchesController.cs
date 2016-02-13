@@ -16,6 +16,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
     public class MatchesController : ApiController
     {
         private readonly IRequestHandler<GetAllMatchesRequest, IEnumerable<Match>> getAllHandler;
+        private readonly IRequestHandler<GetAllExpiredMatchesRequest, IEnumerable<Match>> getAllExpiredHandler;
         private readonly ICommandHandler<CreateMatchRequest> createMatchHandler;
         private readonly ICommandHandler<CancelMatchRequest> cancelMatchHandler;
         private readonly ICommandHandler<AddNewPredictionRequest> addPredictionHandler;
@@ -25,6 +26,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         public MatchesController
             (
                IRequestHandler<GetAllMatchesRequest, IEnumerable<Match>> getAllHandler,
+               IRequestHandler<GetAllExpiredMatchesRequest, IEnumerable<Match>> getAllExpiredHandler,
                ICommandHandler<CreateMatchRequest> createMatchHandler,
                ICommandHandler<CancelMatchRequest> cancelMatchHandler,
                ICommandHandler<AddNewPredictionRequest> addPredictionHandler,
@@ -33,6 +35,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             )
         {
             this.getAllHandler = getAllHandler;
+            this.getAllExpiredHandler = getAllExpiredHandler;
             this.createMatchHandler = createMatchHandler;
             this.cancelMatchHandler = cancelMatchHandler;
             this.addPredictionHandler = addPredictionHandler;
@@ -45,6 +48,13 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         public async Task<IEnumerable<Match>> Get([FromUri] GetAllMatchesRequest request)
         {
             return await getAllHandler.HandleAsync(request);
+        }
+
+        [Route("expired")]
+        [HttpGet]
+        public async Task<IEnumerable<Match>> Get([FromUri] GetAllExpiredMatchesRequest request)
+        {
+            return await getAllExpiredHandler.HandleAsync(request);
         }
 
         [Route("")]

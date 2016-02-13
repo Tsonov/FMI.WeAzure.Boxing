@@ -55,6 +55,7 @@
     <Compile Include="Handlers\BaseHandler.cs" />
     <Compile Include="Handlers\Matches\CancelMatchHandler.cs" />
     <Compile Include="Handlers\Matches\CreateMatchHandler.cs" />
+    <Compile Include="Handlers\Matches\GetAllExpiredMatchesHandler.cs" />
     <Compile Include="Handlers\Matches\GetAllMatchesHandler.cs" />
     <Compile Include="Handlers\Matches\SearchForMatchHandler.cs" />
     <Compile Include="Handlers\Matches\SetMatchResultHandler.cs" />
