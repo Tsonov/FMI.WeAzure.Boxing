@@ -53,7 +53,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             await createUserHandler.HandleAsync(request);
         }
 
-        [Route("")]
+        [Route("{username}")]
         [HttpDelete]
         public async Task Delete([FromUri] DeleteUserRequest request)
         {

@@ -27,14 +27,16 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             this.logoutHandler = logoutHandler;
         }
         
-        public async Task<string> Post(LoginRequest request)
+        [HttpPost]
+        public async Task<string> Post([FromBody] LoginRequest request)
         {
-            return await this.loginHandler.HandleAsync(request);
+            return await loginHandler.HandleAsync(request);
         }
-        
-        public async Task Delete(LogoutRequest request)
+
+        [HttpDelete]
+        public async Task Delete([FromBody] LogoutRequest request)
         {
-            await this.logoutHandler.HandleAsync(request);
+            await logoutHandler.HandleAsync(request);
         }
     }
 }

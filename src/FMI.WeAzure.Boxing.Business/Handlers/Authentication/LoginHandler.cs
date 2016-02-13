@@ -32,7 +32,7 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
                 throw new EntityDoesNotExistException("User for login is invalid");
             }
 
-            if (passwordService.ValidatePassword(request.Password, user.Password))
+            if (passwordService.ValidatePassword(request.Password, user.Password) == false)
             {
                 throw new WrongPasswordException("Invalid password provided");
             }
@@ -53,6 +53,7 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
                 IssuedAt = DateTime.UtcNow,
                 ExpiresAt = DateTime.UtcNow.AddDays(1),
                 ForUser = user,
+                LogoutAt = null
             };
             Context.Logins.Add(newLogin);
             await Context.SaveChangesAsync();

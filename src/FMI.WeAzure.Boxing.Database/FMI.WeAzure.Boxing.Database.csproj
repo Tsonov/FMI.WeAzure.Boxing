@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201602112048414_Replace ID with username key.Designer.cs">
       <DependentUpon>201602112048414_Replace ID with username key.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602131054430_NullableLogoutDate.cs" />
+    <Compile Include="Migrations\201602131054430_NullableLogoutDate.Designer.cs">
+      <DependentUpon>201602131054430_NullableLogoutDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602112048414_Replace ID with username key.resx">
       <DependentUpon>201602112048414_Replace ID with username key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602131054430_NullableLogoutDate.resx">
+      <DependentUpon>201602131054430_NullableLogoutDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,6 +18,6 @@ namespace FMI.WeAzure.Boxing.Database
         [Key]
         public string Token { get; set; }
 
-        public DateTime LogoutAt { get; set; }
+        public DateTime? LogoutAt { get; set; }
     }
 }

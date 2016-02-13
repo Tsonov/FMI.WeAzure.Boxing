@@ -61,23 +61,23 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             await cancelMatchHandler.HandleAsync(request);
         }
 
-        [HttpPost]
         [Route("api/matches/{id}/predictions")]
+        [HttpPost]
         public async Task AddPredictions([FromBody] AddNewPredictionRequest request)
         {
             await addPredictionHandler.HandleAsync(request);
         }
 
-        [HttpPut]
         [Route("api/matches/{id}/predictions")]
+        [HttpPut]
         public async Task PutPrediction(UpdatePredictionRequest request)
         {
             await updatePredictionHandler.HandleAsync(request);
         }
 
 
-        [HttpDelete]
         [Route("api/matches/{id}/predictions")]
+        [HttpDelete]
         public async Task CancelPrediction(CancelPredictionRequest request)
         {
             await cancelPredictionHandler.HandleAsync(request);
