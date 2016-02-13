@@ -13,9 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Business
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Database", "FMI.WeAzure.Boxing.Database\FMI.WeAzure.Boxing.Database.csproj", "{F725C4C3-B6F1-48BF-9E25-4465DA051CD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Business.Tests", "FMI.WeAzure.Boxing.Business.Tests\FMI.WeAzure.Boxing.Business.Tests.csproj", "{B25C3F80-F7FE-4E9C-8984-57CAB16964A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Business.Tests", "..\tests\FMI.WeAzure.Boxing.Business.Tests\FMI.WeAzure.Boxing.Business.Tests.csproj", "{B25C3F80-F7FE-4E9C-8984-57CAB16964A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMI.WeAzure.Boxing.Common", "FMI.WeAzure.Boxing.Common\FMI.WeAzure.Boxing.Common.csproj", "{9E140030-6812-4022-AFF3-AB421A9E9882}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{B88F848D-599D-4E7E-9FE3-A9A2AC2C271A}"
+	ProjectSection(SolutionItems) = preProject
+		..\docs\Boxingpredictions_requirements.pdf = ..\docs\Boxingpredictions_requirements.pdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
