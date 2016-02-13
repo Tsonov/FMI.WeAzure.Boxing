@@ -1,4 +1,5 @@
-﻿using FMI.WeAzure.Boxing.Contracts.Requests.Authentication;
+﻿using FMI.WeAzure.Boxing.Contracts.Names;
+using FMI.WeAzure.Boxing.Contracts.Requests.Authentication;
 using FMI.WeAzure.Boxing.Contracts.Requests.Users;
 using Newtonsoft.Json;
 using System;
@@ -26,6 +27,25 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
                 var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
 
                 return await client.PostAsync(uri, content);
+            }
+        }
+
+        public static async Task<HttpResponseMessage> Get(string user)
+        {
+            using (var client = new HttpClient())
+            {
+                var uri = UriHelper.GetUri("/users/" + user);
+                return await client.GetAsync(uri);
+            }
+        }
+
+        public static async Task<HttpResponseMessage> Delete(string user)
+        {
+            using (var client = new HttpClient())
+            {
+                var uri = UriHelper.GetUri("/users/" + user);
+                client.DefaultRequestHeaders.Add(Headers.AdminAuthenticationHeader, AuthHelper.AdminKey);
+                return await client.DeleteAsync(uri);
             }
         }
     }

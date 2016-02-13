@@ -37,5 +37,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
                 return await client.DeleteAsync(uri);
             }
         }
+
+        public static readonly string AdminKey = "AdminKey1";
     }
 }

@@ -62,8 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\LoginTests.cs" />
+    <Compile Include="Features\MatchesTest.cs" />
     <Compile Include="Features\UsersTests.cs" />
     <Compile Include="Helpers\AuthHelper.cs" />
+    <Compile Include="Helpers\MatchesHelper.cs" />
     <Compile Include="Helpers\UriHelper.cs" />
     <Compile Include="Helpers\UsersHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -47,5 +47,43 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
                 });
             }
         }
+
+        [Fact]
+        [Trait("Category", "Workflow")]
+        public async Task GetUser_ReturnsCorrectInfo()
+        {
+            var userName = Guid.NewGuid().ToString();
+            var password = Guid.NewGuid().ToString();
+            var fullName = "Test value";
+
+            var registerResponse = await UsersHelper.Register(userName, password, fullName);
+            Assert.True(registerResponse.IsSuccessStatusCode, "Failed to register user, status code was " + registerResponse.StatusCode);
+
+            var userResponse = await UsersHelper.Get(userName);
+            Assert.True(userResponse.IsSuccessStatusCode);
+            var content = await userResponse.Content.ReadAsAsync<User>();
+
+            Assert.NotNull(content);
+            Assert.StrictEqual(fullName, content.FullName);
+            Assert.StrictEqual(userName, content.UserName);
+        }
+
+        [Fact]
+        [Trait("Category", "Workflow")]
+        public async Task DeleteUser_DeletesSuccessfully()
+        {
+            var userName = Guid.NewGuid().ToString();
+            var password = Guid.NewGuid().ToString();
+            var fullName = "Test value";
+
+            var registerResponse = await UsersHelper.Register(userName, password, fullName);
+            Assert.True(registerResponse.IsSuccessStatusCode, "Failed to register user, status code was " + registerResponse.StatusCode);
+
+            var deleteResponse = await UsersHelper.Delete(userName);
+            Assert.True(registerResponse.IsSuccessStatusCode, "Failed to delete user, status code was " + deleteResponse.StatusCode);
+
+            var userResponse = await UsersHelper.Get(userName);
+            Assert.True(userResponse.StatusCode == System.Net.HttpStatusCode.NotFound, "Failed to get user, status code was " + userResponse.StatusCode);
+        }
     }
 }

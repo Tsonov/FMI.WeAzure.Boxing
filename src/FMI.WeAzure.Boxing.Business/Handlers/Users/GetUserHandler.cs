@@ -1,4 +1,5 @@
-﻿using FMI.WeAzure.Boxing.Business.Interfaces;
+﻿using FMI.WeAzure.Boxing.Business.Exceptions;
+using FMI.WeAzure.Boxing.Business.Interfaces;
 using FMI.WeAzure.Boxing.Contracts.Requests.Users;
 using FMI.WeAzure.Boxing.Database;
 using System;
@@ -20,7 +21,10 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
         public async Task<Dto.User> HandleAsync(GetUserRequest request)
         {
             var dbUser = await Context.Users.FindAsync(request.UserName);
-            // TODO: Handle missing
+            if (dbUser == null)
+            {
+                throw new EntityDoesNotExistException("Provided user does not exist");
+            }
             return new Dto.User()
             {
                 UserName = dbUser.Username,
