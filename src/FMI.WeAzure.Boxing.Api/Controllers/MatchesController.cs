@@ -20,6 +20,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         private readonly IRequestHandler<GetAllExpiredMatchesRequest, IEnumerable<Match>> getAllExpiredHandler;
         private readonly ICommandHandler<CreateMatchRequest> createMatchHandler;
         private readonly ICommandHandler<CancelMatchRequest> cancelMatchHandler;
+        private readonly ICommandHandler<SetMatchResultRequest> setMatchResultHandler;
         private readonly ICommandHandler<AddNewPredictionRequest> addPredictionHandler;
         private readonly ICommandHandler<CancelPredictionRequest> cancelPredictionHandler;
         private readonly ICommandHandler<UpdatePredictionRequest> updatePredictionHandler;
@@ -30,6 +31,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
                IRequestHandler<GetAllExpiredMatchesRequest, IEnumerable<Match>> getAllExpiredHandler,
                ICommandHandler<CreateMatchRequest> createMatchHandler,
                ICommandHandler<CancelMatchRequest> cancelMatchHandler,
+               ICommandHandler<SetMatchResultRequest> setMatchResultHandler,
                ICommandHandler<AddNewPredictionRequest> addPredictionHandler,
                ICommandHandler<CancelPredictionRequest> cancelPredictionHandler,
                ICommandHandler<UpdatePredictionRequest> updatePredictionHandler
@@ -39,6 +41,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             this.getAllExpiredHandler = getAllExpiredHandler;
             this.createMatchHandler = createMatchHandler;
             this.cancelMatchHandler = cancelMatchHandler;
+            this.setMatchResultHandler = setMatchResultHandler;
             this.addPredictionHandler = addPredictionHandler;
             this.cancelPredictionHandler = cancelPredictionHandler;
             this.updatePredictionHandler = updatePredictionHandler;
@@ -65,6 +68,15 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         public async Task Post([FromBody] CreateMatchRequest request)
         {
             await createMatchHandler.HandleAsync(request);
+        }
+
+        [Route("{matchId:int}")]
+        [HttpPatch]
+        [AdminOnly]
+        public async Task Patch([FromUri] int matchId, [FromBody] SetMatchResultRequest request)
+        {
+            request.MatchId = matchId;
+            await setMatchResultHandler.HandleAsync(request);
         }
 
         [Route("{matchId:int}")]
