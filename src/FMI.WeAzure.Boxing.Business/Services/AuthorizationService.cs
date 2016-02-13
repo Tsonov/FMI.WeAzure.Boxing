@@ -25,15 +25,12 @@ namespace FMI.WeAzure.Boxing.Business.Services
             return (admin != null && admin.Active);
         }
 
-        public async Task<bool> ValidateLoginToken(string token, string user)
+        public async Task<bool> ValidateLoginToken(string token)
         {
             var loginToken = await context.Logins.FindAsync(token);
-            var userEntity = await context.Users.FindAsync(user);
 
             return (
                 loginToken != null && 
-                userEntity != null && 
-                loginToken.ForUser == userEntity &&
                 loginToken.Expired == false);
         }
     }

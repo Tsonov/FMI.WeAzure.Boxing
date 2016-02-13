@@ -1,4 +1,5 @@
-﻿using FMI.WeAzure.Boxing.Business.Interfaces;
+﻿using FMI.WeAzure.Boxing.Api.Infrastructure.Filters;
+using FMI.WeAzure.Boxing.Business.Interfaces;
 using FMI.WeAzure.Boxing.Contracts;
 using FMI.WeAzure.Boxing.Contracts.Dto;
 using FMI.WeAzure.Boxing.Contracts.Requests.Authentication;
@@ -34,6 +35,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         }
 
         [HttpDelete]
+        [LoggedIn]
         public async Task Delete([FromBody] LogoutRequest request)
         {
             await logoutHandler.HandleAsync(request);

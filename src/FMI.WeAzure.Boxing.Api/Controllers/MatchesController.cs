@@ -49,6 +49,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("")]
         [HttpGet]
+        [LoggedIn]
         public async Task<IEnumerable<Match>> Get([FromUri] GetAllMatchesRequest request)
         {
             return await getAllHandler.HandleAsync(request);
@@ -89,6 +90,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("{matchId:int}/predictions")]
         [HttpPost]
+        [LoggedIn]
         public async Task AddPredictions(int matchId, [FromBody] AddNewPredictionRequest request)
         {
             request.MatchId = matchId;
@@ -97,6 +99,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("{matchId:int}/predictions/{predictionId:int}")]
         [HttpPut]
+        [LoggedIn]
         public async Task PutPrediction(int matchId, int predictionId, [FromBody] UpdatePredictionRequest request)
         {
             request.PredictionId = predictionId;
@@ -106,6 +109,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("{matchId:int}/predictions")]
         [HttpDelete]
+        [LoggedIn]
         public async Task CancelPrediction(CancelPredictionRequest request)
         {
             await cancelPredictionHandler.HandleAsync(request);

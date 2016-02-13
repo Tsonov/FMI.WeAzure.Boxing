@@ -10,6 +10,6 @@ namespace FMI.WeAzure.Boxing.Business.Interfaces
     {
         Task<bool> ValidateAdminToken(string token);
 
-        Task<bool> ValidateLoginToken(string token, string user);
+        Task<bool> ValidateLoginToken(string token);
     }
 }

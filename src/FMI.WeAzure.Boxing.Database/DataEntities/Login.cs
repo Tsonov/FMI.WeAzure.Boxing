@@ -26,7 +26,7 @@ namespace FMI.WeAzure.Boxing.Database
         {
             get
             {
-                return ExpiresAt >= DateTime.UtcNow || LogoutAt != null;
+                return ExpiresAt <= DateTime.UtcNow || LogoutAt != null;
             }
         }
     }
