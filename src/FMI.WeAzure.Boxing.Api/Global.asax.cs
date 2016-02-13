@@ -19,9 +19,9 @@ namespace FMI.WeAzure.Boxing.Api
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
-
             var config = GlobalConfiguration.Configuration;
+            WebApiConfig.Register(config);
+            SwaggerConfig.Register(config);
 
             SetupDI(config);
 
