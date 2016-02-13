@@ -26,6 +26,8 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
                 throw new EntityDoesNotExistException("No such user");
             }
             Context.Users.Remove(entity);
+            Context.Logins.RemoveRange(entity.Logins);
+            Context.Predictions.RemoveRange(entity.Predictions);
             await Context.SaveChangesAsync();
             return Unit.Instance;
         }
