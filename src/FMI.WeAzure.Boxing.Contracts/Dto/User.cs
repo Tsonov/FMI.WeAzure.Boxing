@@ -11,5 +11,7 @@ namespace FMI.WeAzure.Boxing.Contracts.Dto
         public string UserName { get; set; }
 
         public string FullName { get; set; }
+
+        public decimal Rating { get; set; }
     }
 }

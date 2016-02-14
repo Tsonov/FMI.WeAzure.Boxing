@@ -8,6 +8,7 @@ using FMI.WeAzure.Boxing.Contracts;
 using FMI.WeAzure.Boxing.Contracts.Requests.Matches;
 using FMI.WeAzure.Boxing.Business.Exceptions;
 using FMI.WeAzure.Boxing.Database;
+using System.Data.Entity;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 {
@@ -31,6 +32,22 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
                 throw new Exception("Invalid winner id, did not participate");
             }
             match.Winner = match.FirstBoxer.Id == request.Winner ? match.FirstBoxer : match.SecondBoxer;
+
+            // Update all predictions to match
+            var correctEntity = (await Context.PredictionResults.ToListAsync()).Single(p => p.Id == (int)PredictionResultEnum.Correct);
+            var incorrect = (await Context.PredictionResults.ToListAsync()).Single(p => p.Id == (int)PredictionResultEnum.Incorrect);
+            var predictions = match.Predictions.ToList();
+            foreach (var prediction in predictions)
+            {
+                if (prediction.PredictedWinner.Id == request.Winner)
+                {
+                    prediction.PredictionResult = correctEntity;
+                }
+                else
+                {
+                    prediction.PredictionResult = incorrect;
+                }
+            }
             await Context.SaveChangesAsync();
 
             return Unit.Instance;

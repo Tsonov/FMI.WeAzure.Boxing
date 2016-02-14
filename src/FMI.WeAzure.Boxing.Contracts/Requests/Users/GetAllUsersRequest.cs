@@ -16,7 +16,7 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Users
             this.Skip = 0;
             this.Take = 15;
             this.SortOrder = SortOrder.Descending;
-            this.OrderByColumn = UserOrderColumn.Rating;
+            this.OrderByColumn = UserOrderColumn.FullName;
         }
 
         public int Skip { get; set; }

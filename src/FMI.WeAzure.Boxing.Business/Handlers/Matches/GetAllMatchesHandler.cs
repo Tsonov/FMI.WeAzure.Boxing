@@ -20,12 +20,22 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 
         public async Task<IEnumerable<Dto.Match>> HandleAsync(GetAllMatchesRequest request)
         {
-            var orderedSet = request.SortOrder == Contracts.Dto.SortOrder.Ascending ?
-                Context.BoxingMatches.OrderBy(m => m.Time)
-                : Context.BoxingMatches.OrderByDescending(m => m.Time);
+            var matchSet = Context.BoxingMatches.AsQueryable();
+            // Apply filtering if needed
+            if (!string.IsNullOrEmpty(request.Search))
+            {
+                matchSet =
+                    matchSet
+                    .Where(m => m.Address.Contains(request.Search) || m.FirstBoxer.Name.Contains(request.Search) || m.SecondBoxer.Name.Contains(request.Search));
+            }
+
+            matchSet = request.SortOrder == Contracts.Dto.SortOrder.Ascending ?
+                matchSet.OrderBy(m => m.Time)
+                : matchSet.OrderByDescending(m => m.Time);
+
 
             var result = (await
-                orderedSet
+                matchSet
                 .Skip(request.Skip)
                 .Take(request.Take)
                 .ToListAsync())

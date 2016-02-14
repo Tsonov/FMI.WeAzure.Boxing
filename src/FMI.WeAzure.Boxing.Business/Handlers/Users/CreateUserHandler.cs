@@ -13,7 +13,7 @@ using FMI.WeAzure.Boxing.Common;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Users
 {
-    public class CreateUserHandler : BaseHandler, ICommandHandler<CreateUserRequest>
+    public class CreateUserHandler : BaseHandler, IRequestHandler<CreateUserRequest, Dto.User>
     {
         private readonly IPasswordService passwordService;
 
@@ -23,7 +23,7 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
             this.passwordService = passwordService;
         }
 
-        public async Task<Unit> HandleAsync(CreateUserRequest request)
+        public async Task<Dto.User> HandleAsync(CreateUserRequest request)
         {
             var password = passwordService.CreateHash(request.Password);
             var newEntity = new User()
@@ -34,7 +34,12 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
             };
             Context.Users.Add(newEntity);
             await Context.SaveChangesAsync();
-            return Unit.Instance;
+            return new Dto.User()
+            {
+                UserName = newEntity.Username,
+                FullName = newEntity.FullName,
+                Rating = newEntity.CalculateRating()
+            };
         }
     }
 }

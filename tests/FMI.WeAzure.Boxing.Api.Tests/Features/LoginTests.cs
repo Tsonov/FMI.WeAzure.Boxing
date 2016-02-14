@@ -13,7 +13,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
     public class LoginTests
     {
         [Fact]
-        [Trait("Category", "Workflow")]
+        [Trait("Category", "Feature")]
         public async Task Login_SucceedsAndReturnsToken()
         {
             // TODO: Create a test db with ready-available data to avoid re-registering
@@ -35,7 +35,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
         }
 
         [Fact]
-        [Trait("Category", "Workflow")]
+        [Trait("Category", "Feature")]
         public async Task Login_LogoutWorks()
         {
             var userName = Guid.NewGuid().ToString();

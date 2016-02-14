@@ -28,7 +28,8 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
             return new Dto.User()
             {
                 UserName = dbUser.Username,
-                FullName = dbUser.FullName
+                FullName = dbUser.FullName,
+                Rating = dbUser.CalculateRating()
             };
         }
     }

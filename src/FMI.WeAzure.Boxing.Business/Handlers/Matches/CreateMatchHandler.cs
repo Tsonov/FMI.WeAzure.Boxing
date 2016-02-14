@@ -38,7 +38,8 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
                 FirstBoxer = firstBoxer,
                 SecondBoxer = secondBoxer,
                 Description = request.Description,
-                Time = request.Date
+                Time = request.Date,
+                Active = true
             };
             Context.BoxingMatches.Add(entity);
             await Context.SaveChangesAsync();

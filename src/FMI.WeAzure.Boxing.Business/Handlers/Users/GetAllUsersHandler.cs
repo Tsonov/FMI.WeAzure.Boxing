@@ -20,13 +20,22 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
 
         public async Task<IEnumerable<Dto.User>> HandleAsync(GetAllUsersRequest request)
         {
+            int successId = (int)PredictionResultEnum.Correct;
             Expression<Func<User, object>> orderer;
             switch (request.OrderByColumn)
             {
-                case Dto.UserOrderColumn.Rating:
-                    //orderer = (user) => 
-                    // TODO
-                    orderer = (user) => user.Username;
+                case Dto.UserOrderColumn.Rating: 
+                    orderer = (user) => 
+                        Context.Predictions.Where(p =>
+                            p.MadeBy.Username == user.Username && 
+                            p.MadeFor.Active == true &&
+                            p.MadeFor.Winner != null && 
+                            p.PredictionResult.Id == successId).Count() 
+                        /
+                        Context.Predictions.Where(p =>
+                            p.MadeBy.Username == user.Username &&
+                            p.MadeFor.Active == true &&
+                            p.MadeFor.Winner != null).Count();
                     break;
                 case Dto.UserOrderColumn.FullName:
                     orderer = (user) => user.FullName;
@@ -47,7 +56,8 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Users
                 .Select(user => new Dto.User()
                 {
                     UserName = user.Username,
-                    FullName = user.FullName
+                    FullName = user.FullName,
+                    Rating = user.CalculateRating()
                 });
 
 

@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acceptance\AcceptanceTests.cs" />
     <Compile Include="Features\LoginTests.cs" />
     <Compile Include="Features\MatchesTest.cs" />
     <Compile Include="Features\UsersTests.cs" />
@@ -83,6 +84,7 @@
       <Name>FMI.WeAzure.Boxing.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

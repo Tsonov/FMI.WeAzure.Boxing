@@ -18,14 +18,14 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         private readonly IRequestHandler<GetAllUsersRequest, IEnumerable<User>> getAllHandler;
         private readonly IRequestHandler<GetUserRequest, User> getSingleHandler;
         private readonly ICommandHandler<DeleteUserRequest> deleteUserHandler;
-        private readonly ICommandHandler<CreateUserRequest> createUserHandler;
+        private readonly IRequestHandler<CreateUserRequest, User> createUserHandler;
 
         public UsersController
             (
                 IRequestHandler<GetAllUsersRequest, IEnumerable<User>> getAllHandler,
                 IRequestHandler<GetUserRequest, User> getSingleHandler,
                 ICommandHandler<DeleteUserRequest> deleteUserHandler,
-                ICommandHandler<CreateUserRequest> createUserHandler
+                IRequestHandler<CreateUserRequest, User> createUserHandler
             )
         {
             this.getAllHandler = getAllHandler;
@@ -54,9 +54,10 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
 
         [Route("")]
         [HttpPost]
-        public async Task Post([FromBody] CreateUserRequest request)
+        public async Task<HttpResponseMessage> Post([FromBody] CreateUserRequest request)
         {
-            await createUserHandler.HandleAsync(request);
+            var userData = await createUserHandler.HandleAsync(request);
+            return Request.CreateResponse(HttpStatusCode.Created, userData);
         }
 
         [Route("{username}")]

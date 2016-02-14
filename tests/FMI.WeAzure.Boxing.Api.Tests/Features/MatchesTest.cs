@@ -44,7 +44,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
         //private async Task<>
 
         [Fact]
-        [Trait("Category", "Workflow")]
+        [Trait("Category", "Feature")]
         public async Task CreateMatch_Succeeds()
         {
             // Create a few boxers to use first
@@ -71,7 +71,50 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
         }
 
         [Fact]
-        [Trait("Category", "Workflow")]
+        [Trait("Category", "Feature")]
+        public async Task SearchMatch_ReturnsData()
+        {
+            Guid addressGuid = Guid.NewGuid();
+
+            var userName = Guid.NewGuid().ToString();
+            var password = Guid.NewGuid().ToString();
+            var fullName = "Test value";
+
+            var registerResponse = await UsersHelper.Register(userName, password, fullName);
+            Assert.True(registerResponse.IsSuccessStatusCode, "Could not register successfully");
+            var loginResponse = await AuthHelper.Login(userName, password);
+            Assert.True(loginResponse.StatusCode == System.Net.HttpStatusCode.Created);
+            var userToken = await loginResponse.Content.ReadAsAsync<string>();
+
+            var boxerResponses = await CreateRandomBoxers();
+            var matchResponse = await MatchesHelper.Create(
+                    boxerResponses[0].Id,
+                    boxerResponses[1].Id,
+                    "Rand " + addressGuid,
+                    DateTime.UtcNow.AddDays(1),
+                    "Rand desc ");
+            Assert.True(matchResponse.IsSuccessStatusCode, "Failed to create a match, status code is " + matchResponse.StatusCode);
+            var match = await matchResponse.Content.ReadAsAsync<Match>();
+
+            // Now do searches on the match and expect to find is
+            var searchAddressResp = await MatchesHelper.GetAll(userToken, 0, 100, addressGuid.ToString());
+            Assert.True(matchResponse.IsSuccessStatusCode, "Failed to search a match, status code is " + searchAddressResp.StatusCode);
+            var dataAddress = await searchAddressResp.Content.ReadAsAsync<IEnumerable<Match>>();
+            Assert.True(dataAddress.Any(m => m.Id == match.Id));
+
+            var searchBoxer1Resp = await MatchesHelper.GetAll(userToken, 0, 100, boxerResponses[0].Name);
+            Assert.True(matchResponse.IsSuccessStatusCode, "Failed to search a match, status code is " + searchBoxer1Resp.StatusCode);
+            var dataBoxer1 = await searchBoxer1Resp.Content.ReadAsAsync<IEnumerable<Match>>();
+            Assert.True(dataBoxer1.Any(m => m.Id == match.Id));
+
+            var searchBoxer2Resp = await MatchesHelper.GetAll(userToken, 0, 100, boxerResponses[1].Name);
+            Assert.True(matchResponse.IsSuccessStatusCode, "Failed to search a match, status code is " + searchBoxer2Resp.StatusCode);
+            var dataBoxer2 = await searchBoxer2Resp.Content.ReadAsAsync<IEnumerable<Match>>();
+            Assert.True(dataBoxer2.Any(m => m.Id == match.Id));
+        }
+
+        [Fact]
+        [Trait("Category", "Feature")]
         public async Task GetMatches_CorrectSortAndPagingResults()
         {
             var userName = Guid.NewGuid().ToString();
@@ -84,7 +127,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
             Assert.True(loginResponse.StatusCode == System.Net.HttpStatusCode.Created);
             var userToken = await loginResponse.Content.ReadAsAsync<string>();
 
-            // Create two matches to setup workflow test
+            // Create two matches to setup Feature test
             // Actual values are not that important since we might get other values
             // This is just to test that skip/take work
             var boxerResponses = await CreateRandomBoxers();

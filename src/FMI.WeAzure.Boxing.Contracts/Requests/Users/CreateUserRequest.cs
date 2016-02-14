@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Contracts.Requests.Users
 {
-    public class CreateUserRequest : IRequest
+    public class CreateUserRequest : IRequest<User>
     {
         public string UserName { get; set; }
 

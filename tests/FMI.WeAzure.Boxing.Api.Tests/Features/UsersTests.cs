@@ -15,7 +15,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
     public class UsersTests
     {
         [Fact]
-        [Trait("Category", "Workflow")]
+        [Trait("Category", "Feature")]
         public async Task Register_SucceedsAndReturnsInfo()
         {
             var userName = Guid.NewGuid().ToString();
@@ -28,14 +28,14 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
         }
 
         [Fact]
-        [Trait("Category", "Workflow")]
+        [Trait("Category", "Feature")]
         public async Task GetUsers_ReturnsInfo()
         {
             using (var client = new HttpClient())
             {
                 var uri = UriHelper.GetUri("users");
                 var response = await client.GetAsync(uri);
-                Assert.True(response.IsSuccessStatusCode);
+                Assert.True(response.IsSuccessStatusCode, "Failed to get users, response code was " + response.StatusCode);
                 var content = await response.Content.ReadAsAsync<IEnumerable<User>>();
 
                 Assert.NotNull(content);
@@ -49,7 +49,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
         }
 
         [Fact]
-        [Trait("Category", "Workflow")]
+        [Trait("Category", "Feature")]
         public async Task GetUser_ReturnsCorrectInfo()
         {
             var userName = Guid.NewGuid().ToString();
@@ -69,7 +69,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
         }
 
         [Fact]
-        [Trait("Category", "Workflow")]
+        [Trait("Category", "Feature")]
         public async Task DeleteUser_DeletesSuccessfully()
         {
             var userName = Guid.NewGuid().ToString();

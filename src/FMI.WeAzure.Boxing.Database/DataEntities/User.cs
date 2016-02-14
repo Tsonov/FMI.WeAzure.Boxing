@@ -26,5 +26,15 @@ namespace FMI.WeAzure.Boxing.Database
         public virtual ICollection<Prediction> Predictions { get; set; }
 
         public virtual ICollection<Login> Logins { get; set; }
+
+        public decimal CalculateRating()
+        {
+            int successId = (int)PredictionResultEnum.Correct;
+            var correct = Predictions.Where(p => p.MadeFor.IsClosed && p.PredictionResult.Id == successId).Count();
+            var all = Predictions.Where(p => p.MadeFor.IsClosed).Count();
+            System.Diagnostics.Debug.Assert(all >= correct);
+
+            return all == 0 ? 0 : correct / all;
+        }
     }
 }

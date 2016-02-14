@@ -77,9 +77,9 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         }
 
         [Route("{matchId:int}")]
-        [HttpPatch]
+        [HttpPost]
         [AdminOnly]
-        public async Task Patch([FromUri] int matchId, [FromBody] SetMatchResultRequest request)
+        public async Task Post([FromUri] int matchId, [FromBody] SetMatchResultRequest request)
         {
             request.MatchId = matchId;
             await setMatchResultHandler.HandleAsync(request);

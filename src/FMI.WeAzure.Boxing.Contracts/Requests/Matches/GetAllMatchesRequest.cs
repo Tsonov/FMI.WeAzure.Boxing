@@ -14,11 +14,14 @@ namespace FMI.WeAzure.Boxing.Contracts.Requests.Matches
         {
             Skip = 0;
             Take = 15;
+            Search = null;
         }
 
         public int Skip { get; set; }
 
         public int Take { get; set; }
+
+        public string Search { get; set; }
 
         public SortOrder SortOrder
         {
