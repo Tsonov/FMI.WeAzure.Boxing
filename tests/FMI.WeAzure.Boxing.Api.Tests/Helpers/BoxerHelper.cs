@@ -16,7 +16,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
         {
             using (var client = new HttpClient())
             {
-                var uri = UriHelper.GetUri("/boxers/");
+                var uri = UriHelper.GetUri("boxers");
                 client.DefaultRequestHeaders.Add(Headers.AdminAuthenticationHeader, AuthHelper.AdminKey);
                 var data = new CreateBoxerRequest()
                 {

@@ -25,6 +25,6 @@ namespace FMI.WeAzure.Boxing.Contracts.Dto
 
         public string Description { get; set; }
 
-        public IList<Prediction> Predictions { get; set; }
+        public IEnumerable<Prediction> Predictions { get; set; }
     }
 }

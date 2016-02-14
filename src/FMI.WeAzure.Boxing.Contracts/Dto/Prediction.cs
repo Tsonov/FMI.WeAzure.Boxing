@@ -10,13 +10,14 @@ namespace FMI.WeAzure.Boxing.Contracts.Dto
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public string User { get; set; }
 
+        public PredictionKind Predicted { get; set; }
 
         public enum PredictionKind
         {
-            FirstBoxerWins,
-            SecondBoxerWins
+            FirstBoxerWins = 1,
+            SecondBoxerWins = 2
         }
     }
 

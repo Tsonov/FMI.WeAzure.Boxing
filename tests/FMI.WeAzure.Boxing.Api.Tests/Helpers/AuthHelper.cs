@@ -16,7 +16,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
         {
             using (var client = new HttpClient())
             {
-                var uri = UriHelper.GetUri("/logins");
+                var uri = UriHelper.GetUri("logins");
                 var data = new LoginRequest()
                 {
                     UserName = user,
@@ -32,7 +32,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
         {
             using (var client = new HttpClient())
             {
-                var uri = UriHelper.GetUri("/logins/" + token);
+                var uri = UriHelper.GetUri("logins/" + token);
                 client.DefaultRequestHeaders.Add(Headers.UserTokenHeader, token);
                 return await client.DeleteAsync(uri);
             }

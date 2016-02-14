@@ -1,5 +1,5 @@
 ﻿using FMI.WeAzure.Boxing.Business.Interfaces;
-using FMI.WeAzure.Boxing.Contracts.Dto;
+using Dto = FMI.WeAzure.Boxing.Contracts.Dto;
 using FMI.WeAzure.Boxing.Contracts.Requests.Matches;
 using System;
 using System.Collections.Generic;
@@ -11,14 +11,14 @@ using FMI.WeAzure.Boxing.Database;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 {
-    public class GetAllMatchesHandler : BaseHandler, IRequestHandler<GetAllMatchesRequest, IEnumerable<Match>>
+    public class GetAllMatchesHandler : BaseHandler, IRequestHandler<GetAllMatchesRequest, IEnumerable<Dto.Match>>
     {
         public GetAllMatchesHandler(BoxingDbContext context) : base(context)
         {
 
         }
 
-        public async Task<IEnumerable<Match>> HandleAsync(GetAllMatchesRequest request)
+        public async Task<IEnumerable<Dto.Match>> HandleAsync(GetAllMatchesRequest request)
         {
             var orderedSet = request.SortOrder == Contracts.Dto.SortOrder.Ascending ?
                 Context.BoxingMatches.OrderBy(m => m.Time)
@@ -29,14 +29,21 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
                 .Skip(request.Skip)
                 .Take(request.Take)
                 .ToListAsync())
-                .Select(m => new Match()
+                .Select(m => new Dto.Match()
                 {
+                    Id = m.Id,
                     Address = m.Address,
                     Date = m.Time,
                     FirstBoxer = m.FirstBoxer.Id,
                     SecondBoxer = m.SecondBoxer.Id,
                     Description = m.Description,
-                    Predictions = null // TODO
+                    Predictions = m.Predictions.Select(p =>
+                        new Dto.Prediction()
+                        {
+                            Id = p.Id,
+                            User = p.MadeBy.Username,
+                            Predicted = (Dto.Prediction.PredictionKind) p.PredictionResult.Id
+                        })
                 });
 
             return result;

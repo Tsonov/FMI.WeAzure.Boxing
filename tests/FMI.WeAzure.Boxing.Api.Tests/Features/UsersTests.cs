@@ -33,7 +33,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
         {
             using (var client = new HttpClient())
             {
-                var uri = UriHelper.GetUri("/users");
+                var uri = UriHelper.GetUri("users");
                 var response = await client.GetAsync(uri);
                 Assert.True(response.IsSuccessStatusCode);
                 var content = await response.Content.ReadAsAsync<IEnumerable<User>>();

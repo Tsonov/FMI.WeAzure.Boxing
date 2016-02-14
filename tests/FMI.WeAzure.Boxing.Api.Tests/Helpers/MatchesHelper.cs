@@ -25,11 +25,24 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
 
             using (var client = new HttpClient())
             {
-                var uri = UriHelper.GetUri("/matches");
+                var uri = UriHelper.GetUri("matches");
                 var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
                 client.DefaultRequestHeaders.Add(Headers.AdminAuthenticationHeader, AuthHelper.AdminKey);
 
                 return await client.PostAsync(uri, content);
+            }
+        }
+
+        public static async Task<HttpResponseMessage> GetAll(string token, int skip = 0, int take = 15)
+        {
+            using (var client = new HttpClient())
+            {
+                var uri = UriHelper.GetUri("matches",
+                    Tuple.Create("skip", (object)skip),
+                    Tuple.Create("take", (object)take));
+                client.DefaultRequestHeaders.Add(Headers.UserTokenHeader, token);
+
+                return await client.GetAsync(uri);
             }
         }
     }

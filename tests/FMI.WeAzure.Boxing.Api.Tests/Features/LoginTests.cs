@@ -16,7 +16,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
         [Trait("Category", "Workflow")]
         public async Task Login_SucceedsAndReturnsToken()
         {
-            // TODO: Create a test db with ready-availbale data to avoid re-registering
+            // TODO: Create a test db with ready-available data to avoid re-registering
             var userName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var fullName = "Test value";

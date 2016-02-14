@@ -17,7 +17,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
         {
             using (var client = new HttpClient())
             {
-                var uri = UriHelper.GetUri("/users");
+                var uri = UriHelper.GetUri("users");
                 var data = new CreateUserRequest()
                 {
                     UserName = user,
@@ -34,7 +34,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
         {
             using (var client = new HttpClient())
             {
-                var uri = UriHelper.GetUri("/users/" + user);
+                var uri = UriHelper.GetUri("users/" + user);
                 return await client.GetAsync(uri);
             }
         }
@@ -43,7 +43,7 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Helpers
         {
             using (var client = new HttpClient())
             {
-                var uri = UriHelper.GetUri("/users/" + user);
+                var uri = UriHelper.GetUri("users/" + user);
                 client.DefaultRequestHeaders.Add(Headers.AdminAuthenticationHeader, AuthHelper.AdminKey);
                 return await client.DeleteAsync(uri);
             }

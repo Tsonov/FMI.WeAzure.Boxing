@@ -52,6 +52,10 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         [LoggedIn]
         public async Task<IEnumerable<Match>> Get([FromUri] GetAllMatchesRequest request)
         {
+            if (request == null)
+            {
+                request = new GetAllMatchesRequest();
+            }
             return await getAllHandler.HandleAsync(request);
         }
 
