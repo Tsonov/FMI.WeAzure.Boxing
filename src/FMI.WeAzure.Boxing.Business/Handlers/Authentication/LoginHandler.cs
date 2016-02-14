@@ -15,7 +15,7 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
 {
     public class LoginHandler : BaseHandler, IRequestHandler<LoginRequest, string>
     {
-        private readonly RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
+        private static readonly RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
         private readonly IPasswordService passwordService;
 
         public LoginHandler(IPasswordService passwordService, BoxingDbContext context) : base(context)
@@ -43,7 +43,12 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Authentication
             do
             {
                 crypto.GetBytes(tokenRng);
-                token = Convert.ToBase64String(tokenRng);
+                token = 
+                    Convert.ToBase64String(tokenRng) // Needs some massaging to get it to be url-safe
+                    .TrimEnd('=')
+                    .Replace('+', '-')
+                    .Replace('/', '_');
+
                 alreadyExists = (await Context.Logins.FindAsync(token)) != null;
             } while (alreadyExists);
 

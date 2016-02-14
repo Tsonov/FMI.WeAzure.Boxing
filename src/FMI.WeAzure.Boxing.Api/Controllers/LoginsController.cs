@@ -31,9 +31,10 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         
         [Route("")]
         [HttpPost]
-        public async Task<string> Post([FromBody] LoginRequest request)
+        public async Task<HttpResponseMessage> Post([FromBody] LoginRequest request)
         {
-            return await loginHandler.HandleAsync(request);
+            var token = await loginHandler.HandleAsync(request);
+            return Request.CreateResponse(HttpStatusCode.Created, token);
         }
 
         [Route("{token}")]

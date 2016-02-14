@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FMI.WeAzure.Boxing.Contracts.Requests.Matches
 {
-    public class CreateMatchRequest : IRequest
+    public class CreateMatchRequest : IRequest<Match>
     {
         public int FirstBoxer { get; set; }
 

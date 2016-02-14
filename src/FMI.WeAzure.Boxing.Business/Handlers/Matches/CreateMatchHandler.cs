@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 using FMI.WeAzure.Boxing.Contracts;
 using FMI.WeAzure.Boxing.Database;
 using FMI.WeAzure.Boxing.Business.Exceptions;
+using FMI.WeAzure.Boxing.Contracts.Dto;
 
 namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
 {
-    public class CreateMatchHandler : BaseHandler, ICommandHandler<CreateMatchRequest>
+    public class CreateMatchHandler : BaseHandler, IRequestHandler<CreateMatchRequest, Match>
     {
         public CreateMatchHandler(BoxingDbContext context) : base(context)
         {
 
         }
 
-        public async Task<Unit> HandleAsync(CreateMatchRequest request)
+        public async Task<Match> HandleAsync(CreateMatchRequest request)
         {
             var firstBoxer = await Context.Boxers.FindAsync(request.FirstBoxer);
             if (firstBoxer == null)
@@ -42,7 +43,18 @@ namespace FMI.WeAzure.Boxing.Business.Handlers.Matches
             Context.BoxingMatches.Add(entity);
             await Context.SaveChangesAsync();
 
-            return Unit.Instance;
+            var match = new Match()
+            {
+                Id = entity.Id,
+                Address = entity.Address,
+                Date = entity.Time,
+                FirstBoxer = entity.FirstBoxer.Id,
+                SecondBoxer = entity.SecondBoxer.Id,
+                Description = entity.Description,
+                Predictions = Enumerable.Empty<Contracts.Dto.Prediction>().ToList()
+            };
+
+            return match;
         }
     }
 }

@@ -22,13 +22,11 @@ namespace FMI.WeAzure.Boxing.Api.Tests.Features
             var fullName = "Test value";
 
             var registerResponse = await UsersHelper.Register(userName, password, fullName);
-            if (registerResponse.IsSuccessStatusCode == false)
-            {
-                Assert.True(false, "Could not register successfully");
-            }
+            Assert.True(registerResponse.IsSuccessStatusCode, "Could not register successfully");
 
             // Do the actual login
             var loginResponse = await AuthHelper.Login(userName, password);
+            Assert.True(loginResponse.StatusCode == System.Net.HttpStatusCode.Created);
 
             var token = await loginResponse.Content.ReadAsAsync<string>();
             System.Diagnostics.Debug.WriteLine(token);

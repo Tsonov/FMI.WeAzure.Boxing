@@ -18,7 +18,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
     {
         private readonly IRequestHandler<GetAllMatchesRequest, IEnumerable<Match>> getAllHandler;
         private readonly IRequestHandler<GetAllExpiredMatchesRequest, IEnumerable<Match>> getAllExpiredHandler;
-        private readonly ICommandHandler<CreateMatchRequest> createMatchHandler;
+        private readonly IRequestHandler<CreateMatchRequest, Match> createMatchHandler;
         private readonly ICommandHandler<CancelMatchRequest> cancelMatchHandler;
         private readonly ICommandHandler<SetMatchResultRequest> setMatchResultHandler;
         private readonly ICommandHandler<AddNewPredictionRequest> addPredictionHandler;
@@ -29,7 +29,7 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
             (
                IRequestHandler<GetAllMatchesRequest, IEnumerable<Match>> getAllHandler,
                IRequestHandler<GetAllExpiredMatchesRequest, IEnumerable<Match>> getAllExpiredHandler,
-               ICommandHandler<CreateMatchRequest> createMatchHandler,
+               IRequestHandler<CreateMatchRequest, Match> createMatchHandler,
                ICommandHandler<CancelMatchRequest> cancelMatchHandler,
                ICommandHandler<SetMatchResultRequest> setMatchResultHandler,
                ICommandHandler<AddNewPredictionRequest> addPredictionHandler,
@@ -66,9 +66,10 @@ namespace FMI.WeAzure.Boxing.Api.Controllers
         [Route("")]
         [HttpPost]
         [AdminOnly]
-        public async Task Post([FromBody] CreateMatchRequest request)
+        public async Task<HttpResponseMessage> Post([FromBody] CreateMatchRequest request)
         {
-            await createMatchHandler.HandleAsync(request);
+            var match = await createMatchHandler.HandleAsync(request);
+            return Request.CreateResponse(HttpStatusCode.Created, match);
         }
 
         [Route("{matchId:int}")]

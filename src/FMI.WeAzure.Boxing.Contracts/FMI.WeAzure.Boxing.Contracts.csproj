@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\Boxer.cs" />
     <Compile Include="Dto\Login.cs" />
     <Compile Include="Dto\Match.cs" />
     <Compile Include="Dto\SortOrderEnum.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Authentication\LoginRequest.cs" />
     <Compile Include="Requests\Authentication\LogoutRequest.cs" />
+    <Compile Include="Requests\Boxers\CreateBoxerRequest.cs" />
     <Compile Include="Requests\Matches\CancelMatchRequest.cs" />
     <Compile Include="Requests\Matches\CreateMatchRequest.cs" />
     <Compile Include="Requests\Matches\GetAllExpiredMatchesRequest.cs" />
